@@ -1,0 +1,26 @@
+PODS:
+  - ImageSlideshow (1.8.3):
+    - ImageSlideshow/Core (= 1.8.3)
+  - ImageSlideshow/Core (1.8.3)
+  - IQKeyboardManager (6.5.5)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - ImageSlideshow (~> 1.8.1)
+  - IQKeyboardManager
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - ImageSlideshow
+    - IQKeyboardManager
+    - SnapKit
+
+SPEC CHECKSUMS:
+  ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
+  IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: e330695ed2b2d61823e0ee193c6e5f9176fc8644
+
+COCOAPODS: 1.9.1

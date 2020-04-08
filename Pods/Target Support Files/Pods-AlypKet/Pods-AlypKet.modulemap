@@ -1,0 +1,6 @@
+framework module Pods_AlypKet {
+  umbrella header "Pods-AlypKet-umbrella.h"
+
+  export *
+  module * { export * }
+}
