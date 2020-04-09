@@ -28,11 +28,13 @@ class DetailMainPageController: LoaderBaseViewController {
     
     let detailCenterView: DetailCenterView = {
         let view = DetailCenterView()
+        
         return view
     }()
     
     let detailDescriptionView: DetailDescriptionView = {
         let view = DetailDescriptionView()
+
         return view
     }()
     
@@ -103,7 +105,7 @@ class DetailMainPageController: LoaderBaseViewController {
         detailCenterView.snp.makeConstraints { (make) in
             make.top.equalTo(sliderImageView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.height.equalTo(270)
+//            make.height.equalTo(270)
         }
         
         contentView.addSubview(detailDescriptionView)
@@ -112,7 +114,7 @@ class DetailMainPageController: LoaderBaseViewController {
         detailDescriptionView.snp.makeConstraints { (make) in
             make.top.equalTo(detailCenterView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.height.equalTo(200)
+//            make.height.equalTo(200)
         }
         
         contentView.addSubview(detailUserInfoView)
@@ -120,7 +122,7 @@ class DetailMainPageController: LoaderBaseViewController {
         detailUserInfoView.snp.makeConstraints { (make) in
             make.top.equalTo(detailDescriptionView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.height.equalTo(120)
+//            make.height.equalTo(120)
         }
         
         
@@ -139,8 +141,8 @@ class DetailMainPageController: LoaderBaseViewController {
             make.top.equalTo(writeButton.snp.top)
             make.left.equalTo(writeButton.snp.right).offset(8)
             make.right.equalTo(-16)
-            make.height.equalTo(writeButton.snp.height)
-            make.width.equalTo(writeButton.snp.width)
+            make.width.height.equalTo(writeButton)
+//            make.width.equalTo(writeButton.snp.width)
         }
     }
     

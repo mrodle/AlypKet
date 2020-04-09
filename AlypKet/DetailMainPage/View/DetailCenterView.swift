@@ -123,6 +123,7 @@ class DetailCenterView: UIView {
             make.top.equalTo(weightLabel.snp.bottom).offset(16)
             make.left.equalTo(16)
             make.size.equalTo(CGSize(width: 262, height: 36))
+            make.bottom.equalTo(-16)
         }
         
     }
