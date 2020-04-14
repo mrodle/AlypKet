@@ -15,6 +15,7 @@
 		2E4C23C6243DFB6C00BECA13 /* DetailCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C23C5243DFB6C00BECA13 /* DetailCenterView.swift */; };
 		2E4C23C8243DFD9B00BECA13 /* DetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C23C7243DFD9B00BECA13 /* DetailDescriptionView.swift */; };
 		2E4C23CC243E096400BECA13 /* DetailUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C23CB243E096400BECA13 /* DetailUserInfoView.swift */; };
+		2E8C473D2445C19E00D9E967 /* FavouritePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8C473C2445C19E00D9E967 /* FavouritePageViewController.swift */; };
 		2EBEC1AF243A0E21009D8F7D /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBEC1AE243A0E21009D8F7D /* BaseCell.swift */; };
 		2EBEC1B1243B28FC009D8F7D /* FilterLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBEC1B0243B28FC009D8F7D /* FilterLauncher.swift */; };
 		ACE2AF949375C9F9B34A1591 /* Pods_AlypKet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD921D563C487BF31C4EFA6B /* Pods_AlypKet.framework */; };
@@ -92,6 +93,7 @@
 		2E4C23C5243DFB6C00BECA13 /* DetailCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCenterView.swift; sourceTree = "<group>"; };
 		2E4C23C7243DFD9B00BECA13 /* DetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDescriptionView.swift; sourceTree = "<group>"; };
 		2E4C23CB243E096400BECA13 /* DetailUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserInfoView.swift; sourceTree = "<group>"; };
+		2E8C473C2445C19E00D9E967 /* FavouritePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePageViewController.swift; sourceTree = "<group>"; };
 		2EBEC1AE243A0E21009D8F7D /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		2EBEC1B0243B28FC009D8F7D /* FilterLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterLauncher.swift; sourceTree = "<group>"; };
 		73A23C560D514AF35F547FA8 /* Pods-AlypKet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlypKet.debug.xcconfig"; path = "Target Support Files/Pods-AlypKet/Pods-AlypKet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,6 +226,22 @@
 			isa = PBXGroup;
 			children = (
 				2E0DE8412438F8CB00BD0A53 /* MainPageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2E8C473A2445C17D00D9E967 /* Favourite Page */ = {
+			isa = PBXGroup;
+			children = (
+				2E8C473B2445C18700D9E967 /* Controller */,
+			);
+			path = "Favourite Page";
+			sourceTree = "<group>";
+		};
+		2E8C473B2445C18700D9E967 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E8C473C2445C19E00D9E967 /* FavouritePageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -366,6 +384,7 @@
 		B58783EA2423A05900819534 /* AlypKet */ = {
 			isa = PBXGroup;
 			children = (
+				2E8C473A2445C17D00D9E967 /* Favourite Page */,
 				2EBEC1B2243B4F83009D8F7D /* DetailMainPage */,
 				2E0DE83C2438F87100BD0A53 /* Main Page */,
 				B5ABBDB1243C2763002353FD /* ChatPage */,
@@ -824,6 +843,7 @@
 				B5E4D51F243E440A00E8834F /* ChatListTableViewCell.swift in Sources */,
 				2E0DE8422438F8CB00BD0A53 /* MainPageViewController.swift in Sources */,
 				B5ABBDB3243C2771002353FD /* ChatController.swift in Sources */,
+				2E8C473D2445C19E00D9E967 /* FavouritePageViewController.swift in Sources */,
 				2E0DE8442438FEC600BD0A53 /* MenuBar.swift in Sources */,
 				B5EC13BD242B6BBC00BDDF9C /* VerificationView.swift in Sources */,
 			);

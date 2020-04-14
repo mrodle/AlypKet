@@ -43,7 +43,7 @@ class TabBarViewController: UITabBarController {
         let mainController = MainPageViewController().inNavigation()
         mainController.tabBarItem = UITabBarItem.init(title: "Главная", image: #imageLiteral(resourceName: "search"), tag: 0)
 
-        let favouriteController = UIViewController().inNavigation()
+        let favouriteController = FavouritePageViewController().inNavigation()
         favouriteController.tabBarItem = UITabBarItem.init(title: "Избранное", image: #imageLiteral(resourceName: "🔹 Icon Color-3"), tag: 1)
 
         addTabbarController.tabBarItem.image = nil
