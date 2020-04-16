@@ -23,10 +23,14 @@ class AppConstants {
 
         //        MARK: - Base Url
 
-        static let baseUrl = "http://194.4.58.92/api/"
+        static let baseUrl = "https://gidirect.app/node/api/v1/"
 
 
         //        MARK: - General API
+        
+        static let sendCodeMessage = "auth/send/sms"
+        static let getLogin = "auth/login"
+        static let getRegistration = "auth/register"
 
     }
 }

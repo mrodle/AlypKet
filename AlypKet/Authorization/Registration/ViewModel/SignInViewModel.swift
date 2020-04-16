@@ -18,14 +18,15 @@ class SignInViewModel {
         }
     }
 
-    private var phone: String = String()
+    var phone: String = String()
+    var iin: String = String()
     private var password: String = String()
 
     func setPhone(_ phone: String) -> Bool {
         let text = phone
-        let phoneNumber = String(text.suffix(text.count-2)).replacingOccurrences(of: " ", with: "")
+        let phoneNumber = String(text.suffix(text.count-1)).replacingOccurrences(of: " ", with: "")
         self.phone = "\(phoneNumber)"
-        guard self.phone != "" && self.phone.count == 10 else { errorMessage = "Неправильный формат номера"; return true }
+        guard self.phone != "" && self.phone.count == 11 else { errorMessage = "Неправильный формат номера"; return true }
         errorMessage = ""
 
         return false
@@ -50,6 +51,9 @@ class SignInViewModel {
     }
     
     func setIinNumber(_ iin: String) -> Bool {
+        let iinNumber = String(iin.replacingOccurrences(of: "-", with: ""))
+        self.iin = "\(iinNumber)"
+
         guard iin.count == 15 else { errorMessage = "Неправильный формат ИИН номера"; return true }
         errorMessage = ""
         

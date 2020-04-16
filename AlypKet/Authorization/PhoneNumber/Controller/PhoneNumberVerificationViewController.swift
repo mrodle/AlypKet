@@ -8,10 +8,11 @@
 
 import UIKit
 
-class PhoneNumberVerificationViewController: UIViewController {
+class PhoneNumberVerificationViewController: LoaderBaseViewController {
     
     //    MARK: - Properties
-    
+    var code: String = ""
+    var phone = Int()
     lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "🔹 Icon Color-2"), for: .normal)
@@ -46,25 +47,26 @@ class PhoneNumberVerificationViewController: UIViewController {
     lazy var confedentionButton: UIButton = {
         let button = UIButton()
         let buttonAttributes : [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.2, green: 0.247, blue: 0.322, alpha: 1),
-                                                              NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+                                                                NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
         let attString = NSMutableAttributedString(string: "Политика конфиденциальности\n Условия пользовательского соглашения", attributes: buttonAttributes)
-
+        
         button.setAttributedTitle(attString, for: .normal)
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .getProximaNovaRegularFont(on: 14)
-
+        
         
         return button
     }()
-
     
-//    MARK: - Lifecycle
+    
+    //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupAction()
+        setupLoaderView()
         // Do any additional setup after loading the view.
     }
     
@@ -121,7 +123,7 @@ class PhoneNumberVerificationViewController: UIViewController {
             make.bottom.equalTo(-24)
             make.left.right.equalToSuperview()
         }
-
+        
         
     }
     
@@ -132,9 +134,8 @@ class PhoneNumberVerificationViewController: UIViewController {
         verificationView.codeTextFields.endedTypeCode = {
             let codeView = self.verificationView.codeTextFields
             let typedCode = codeView.firstInputTextField.text! + codeView.secondInputTextField.text! + codeView.thirdInputTextField.text! + codeView.fourthInputTextField.text!
-            if typedCode == "5555" {
-                self.verificationView.codeTextFields.errorLabel.text = ""
-                self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+            if typedCode == self.code {
+                self.getLogin()
             } else {
                 codeView.isError()
                 self.verificationView.codeTextFields.errorLabel.text = "Введенный код неправильный"
@@ -143,12 +144,44 @@ class PhoneNumberVerificationViewController: UIViewController {
     }
     
     
+    //    MARK: - Parse manager
+    
+    private func sendCodeMessage() -> Void {
+        phone = Int(self.phoneNumberView.phoneTextField.viewModel.phone)!
+        let params: Parameters = ["phone": phone]
+        ParseManager.shared.postRequest(url: AppConstants.API.sendCodeMessage, parameters: params, success: { (result:
+            SendMessageModel) in
+            if let data = result.data {
+                self.code = "\(String(describing: data.code!))"
+            }
+            self.verificationView.codeTextFields.passhereLabel.text = "На номер \(self.phoneNumberView.phoneTextField.textField.phoneTextField.text!) был\nотправлен СМС-код "
+            self.showVerificationView()
+            self.verificationView.codeTextFields.sendagainView.startSecondomer()
+            
+        }) { (error) in
+            self.showErrorMessage(error)
+        }
+    }
+    
+    private func getLogin() -> Void {
+        self.showLoader()
+        self.verificationView.codeTextFields.errorLabel.text = ""
+        let params: Parameters = ["phone": phone, "password": "\(phone)"]
+        ParseManager.shared.postRequest(url: AppConstants.API.getLogin, parameters: params, success: { (result: AuthModel) in
+            self.hideLoader()
+            do { try? UserManager.createSessionWithUser(result) }
+            let vc = RegistrationViewController()
+            vc.phone = self.phone
+            self.navigationController?.pushViewController(vc, animated: true)
+        }) { (error) in
+            self.verificationView.codeTextFields.errorLabel.text = error
+            self.showErrorMessage(error)
+        }
+    }
     //    MARK: - Objc functions
     
     @objc func getCodeAction() -> Void {
-        self.verificationView.codeTextFields.passhereLabel.text = "На номер \(phoneNumberView.phoneTextField.textField.phoneTextField.text!) был\nотправлен СМС-код "
-        showVerificationView()
-        self.verificationView.codeTextFields.sendagainView.startSecondomer()
+        self.sendCodeMessage()
     }
     
     @objc func backToPhoneNumber() -> Void {
@@ -156,8 +189,8 @@ class PhoneNumberVerificationViewController: UIViewController {
         self.verificationView.codeTextFields.isEmptyTyping()
         self.verificationView.codeTextFields.sendagainView.stopSecondomer()
     }
-        
-//    MARK: - Simple functions
+    
+    //    MARK: - Simple functions
     
     private func showVerificationView() -> Void {
         UIView.animate(withDuration: 0.5, animations: {
@@ -192,8 +225,8 @@ class PhoneNumberVerificationViewController: UIViewController {
             self.backButton.isHidden = true
         }
     }
-
-
+    
+    
 }
 
 

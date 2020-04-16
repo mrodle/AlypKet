@@ -166,6 +166,9 @@ class RegistrationBottomView: UIView {
         return true
     }
     
+//    MARK:  - Parse manager
+    
+    
     //    MARK: - Actions
     @objc func nextButtonAction() -> Void {
         

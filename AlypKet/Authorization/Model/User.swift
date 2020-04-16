@@ -8,10 +8,16 @@
 
 import Foundation
 class User: Codable {
-    var id: Int
+    var role: String
+    var _id: String
     var name: String
-    var token: String?
+    var firstName: String
+    var lastName: String
+    var email: String
+    var iin: Int
+    var phone: Int
     var password: String
-    var phone: String
-    var device_id: String?
+    var createdAt: String
+    var __v: Int
+
 }
