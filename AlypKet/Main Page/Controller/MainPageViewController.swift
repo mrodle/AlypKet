@@ -10,8 +10,9 @@ import UIKit
 
 class MainPageViewController: UIViewController {
     
-    let menuBar: MenuBar = {
+    lazy var menuBar: MenuBar = {
         let mb = MenuBar()
+        mb.mainPageViewController = self
         return mb
     }()
     
@@ -28,6 +29,9 @@ class MainPageViewController: UIViewController {
         collectionView.register(BaseCell.self, forCellWithReuseIdentifier: BaseCell.cellIdentifier())
         return collectionView
     }()
+    
+   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,13 @@ class MainPageViewController: UIViewController {
     
     @objc func handleSearch(){
         print("print")
+    }
+    
+    func handleFilterAction(){
+        let vc = UINavigationController(rootViewController: FilterViewController())
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+//        self.show(vc, sender: self)
     }
     
     @objc func handleCity(){

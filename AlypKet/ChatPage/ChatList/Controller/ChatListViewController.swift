@@ -20,12 +20,30 @@ class ChatListViewController: UIViewController {
     }()
     
     lazy var tableView = UITableView()
-
+    let popUpLongPressView:PopUpLongPressView = {
+       let popUpLongPressView = PopUpLongPressView()
+        return popUpLongPressView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupTableView()
-        // Do any additional setup after loading the view.
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(longPressGestureRecognizer:)))
+        self.view.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    
+    
+    @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        
+        if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
+            
+            let touchPoint = longPressGestureRecognizer.location(in: self.view)
+            if let index = self.tableView.indexPathForRow(at: touchPoint)  {
+                popUpLongPressView.showSettings(index: index[1])
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,7 +78,7 @@ class ChatListViewController: UIViewController {
 
 extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 30
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

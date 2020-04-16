@@ -44,6 +44,9 @@ class MenuBar: UIView ,UITextFieldDelegate{
         return button
     }()
     
+    
+    var mainPageViewController:MainPageViewController?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -56,7 +59,7 @@ class MenuBar: UIView ,UITextFieldDelegate{
     
     
     @objc func filterButton(){
-        print("filter")
+        mainPageViewController?.handleFilterAction()
     }
     
     func setupView(){
