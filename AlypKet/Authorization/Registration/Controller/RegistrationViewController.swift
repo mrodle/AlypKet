@@ -11,7 +11,7 @@ import UIKit
 class RegistrationViewController: LoaderBaseViewController {
     
     //    MARK: - Properties
-    
+    var phone = Int()
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -72,26 +72,30 @@ class RegistrationViewController: LoaderBaseViewController {
     
     
     private func setupAction() -> Void {
-//        self.bottomView.haventView.haventLabelButton.addTarget(self, action: #selector(toSignInPage), for: .touchUpInside)
+        self.bottomView.regButton.addTarget(self, action: #selector(getRegistrationAction), for: .touchUpInside)
+//        self.bottomView.haventView.haventLabelButton.addTarget(self, action: #selector(toSignInPagex), for: .touchUpInside)
     }
     
     //    MARK: - Actions
     
-    @objc func toSignInPage() -> Void {
-//        self.navigationController?.pushViewController(SignInViewController(), animated: true)
+    @objc func getRegistrationAction() -> Void {
+        let params: Parameters = [
+            "firstName": bottomView.firstNameTextField.textField.textField.text!,
+            "lastName": bottomView.secondNameTextField.textField.textField.text!,
+            "iin": Int(bottomView.iinTextField.viewModel.iin)!,
+            "phone": phone,
+            "email": bottomView.emailTextField.textField.textField.text!,
+            "password": "\(phone)",
+            "role": "user"
+        ]
+        
+        ParseManager.shared.postRequest(url: AppConstants.API.getRegistration, parameters: params, success: { (result: AuthModel) in
+            do { try? UserManager.createSessionWithUser(result) }
+            AppCenter.shared.startWithToken()
+        }) { (error) in
+            self.showErrorMessage(error)
+        }
     }
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     
 }

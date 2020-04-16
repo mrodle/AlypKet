@@ -117,8 +117,8 @@ class WelcomeViewController: UIViewController {
 //    MARK: - Actions
     
     @objc func toPhoneNumberPage() -> Void {
-//        navigationController?.pushViewController(PhoneNumberVerificationViewController(), animated: true)
-        AppCenter.shared.startWithToken()
+        navigationController?.pushViewController(PhoneNumberVerificationViewController(), animated: true)
+//        AppCenter.shared.startWithToken()
     }
     /*
     // MARK: - Navigation

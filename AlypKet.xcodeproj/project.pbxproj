@@ -30,6 +30,17 @@
 		B5200EE82424A91B005836E6 /* HaventAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5200EE72424A91B005836E6 /* HaventAccountView.swift */; };
 		B5200EEA2424DB0E005836E6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5200EE92424DB0E005836E6 /* SignInViewModel.swift */; };
 		B5200EEC2424DB43005836E6 /* ViewModelConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5200EEB2424DB43005836E6 /* ViewModelConfigurable.swift */; };
+		B57FA36324475E76002ED43D /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36224475E76002ED43D /* Endpoints.swift */; };
+		B57FA36524475E7C002ED43D /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36424475E7C002ED43D /* ParseManager.swift */; };
+		B57FA36E24475E8C002ED43D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36724475E8B002ED43D /* Response.swift */; };
+		B57FA36F24475E8C002ED43D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36824475E8B002ED43D /* Result.swift */; };
+		B57FA37024475E8C002ED43D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36924475E8B002ED43D /* Parser.swift */; };
+		B57FA37124475E8C002ED43D /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36A24475E8B002ED43D /* NetworkResponse.swift */; };
+		B57FA37224475E8C002ED43D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36B24475E8B002ED43D /* NetworkManager.swift */; };
+		B57FA37324475E8C002ED43D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36C24475E8C002ED43D /* Router.swift */; };
+		B57FA37424475E8C002ED43D /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36D24475E8C002ED43D /* EndpointType.swift */; };
+		B57FA377244762FF002ED43D /* SendMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA376244762FF002ED43D /* SendMessageModel.swift */; };
+		B57FA3792447646D002ED43D /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA3782447646D002ED43D /* AuthModel.swift */; };
 		B58399E8243CAAF000E98A4C /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58399E7243CAAF000E98A4C /* ChatListViewController.swift */; };
 		B58399ED243CCA2700E98A4C /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58399EC243CCA2700E98A4C /* MessageInputView.swift */; };
 		B58783EC2423A05900819534 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58783EB2423A05900819534 /* AppDelegate.swift */; };
@@ -108,6 +119,17 @@
 		B5200EE72424A91B005836E6 /* HaventAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaventAccountView.swift; sourceTree = "<group>"; };
 		B5200EE92424DB0E005836E6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		B5200EEB2424DB43005836E6 /* ViewModelConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelConfigurable.swift; sourceTree = "<group>"; };
+		B57FA36224475E76002ED43D /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		B57FA36424475E7C002ED43D /* ParseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
+		B57FA36724475E8B002ED43D /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		B57FA36824475E8B002ED43D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		B57FA36924475E8B002ED43D /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		B57FA36A24475E8B002ED43D /* NetworkResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		B57FA36B24475E8B002ED43D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B57FA36C24475E8C002ED43D /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		B57FA36D24475E8C002ED43D /* EndpointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
+		B57FA376244762FF002ED43D /* SendMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageModel.swift; sourceTree = "<group>"; };
+		B57FA3782447646D002ED43D /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		B58399E7243CAAF000E98A4C /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		B58399EC243CCA2700E98A4C /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		B58783E82423A05900819534 /* AlypKet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlypKet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +352,39 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		B57FA36124475E5E002ED43D /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				B57FA36624475E7E002ED43D /* NetworkManager */,
+				B57FA36224475E76002ED43D /* Endpoints.swift */,
+				B57FA36424475E7C002ED43D /* ParseManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		B57FA36624475E7E002ED43D /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				B57FA36D24475E8C002ED43D /* EndpointType.swift */,
+				B57FA36B24475E8B002ED43D /* NetworkManager.swift */,
+				B57FA36A24475E8B002ED43D /* NetworkResponse.swift */,
+				B57FA36924475E8B002ED43D /* Parser.swift */,
+				B57FA36724475E8B002ED43D /* Response.swift */,
+				B57FA36824475E8B002ED43D /* Result.swift */,
+				B57FA36C24475E8C002ED43D /* Router.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		B57FA3752447618C002ED43D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B57FA376244762FF002ED43D /* SendMessageModel.swift */,
+				B57FA3782447646D002ED43D /* AuthModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B58399E9243CC83100E98A4C /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +488,7 @@
 		B587841E2423A14100819534 /* ApplicationHandler */ = {
 			isa = PBXGroup;
 			children = (
+				B57FA36124475E5E002ED43D /* NetworkManager */,
 				B587841F2423A1D100819534 /* UserManager.swift */,
 				B58784212423A1F600819534 /* Key.swift */,
 				B58784292423A49700819534 /* AppCenter.swift */,
@@ -569,6 +625,7 @@
 		B5EC13B5242B620800BDDF9C /* PhoneNumber */ = {
 			isa = PBXGroup;
 			children = (
+				B57FA3752447618C002ED43D /* Model */,
 				B5EC13B9242B643300BDDF9C /* View */,
 				B5EC13B6242B621600BDDF9C /* Controller */,
 			);
@@ -799,10 +856,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57FA37424475E8C002ED43D /* EndpointType.swift in Sources */,
+				B57FA37224475E8C002ED43D /* NetworkManager.swift in Sources */,
 				B5EC13BB242B644B00BDDF9C /* PhoneNumberView.swift in Sources */,
 				B58784312423ABF300819534 /* Extension.swift in Sources */,
 				B5200EE82424A91B005836E6 /* HaventAccountView.swift in Sources */,
 				2EBEC1B1243B28FC009D8F7D /* FilterLauncher.swift in Sources */,
+				B57FA37024475E8C002ED43D /* Parser.swift in Sources */,
 				B5200EEA2424DB0E005836E6 /* SignInViewModel.swift in Sources */,
 				2E4C23C2243DD3C200BECA13 /* DetailMainPageController.swift in Sources */,
 				B5200EE224249A09005836E6 /* PhoneTextField.swift in Sources */,
@@ -819,13 +879,17 @@
 				2EBEC1AF243A0E21009D8F7D /* BaseCell.swift in Sources */,
 				B587842A2423A49700819534 /* AppCenter.swift in Sources */,
 				B5ABBDBC243C2AF7002353FD /* MessageCell.swift in Sources */,
+				B57FA3792447646D002ED43D /* AuthModel.swift in Sources */,
+				B57FA37324475E8C002ED43D /* Router.swift in Sources */,
 				B58783EC2423A05900819534 /* AppDelegate.swift in Sources */,
 				B58399ED243CCA2700E98A4C /* MessageInputView.swift in Sources */,
 				B58399E8243CAAF000E98A4C /* ChatListViewController.swift in Sources */,
 				B5E4D515243E0C8B00E8834F /* SliderCollectionViewCell.swift in Sources */,
+				B57FA36E24475E8C002ED43D /* Response.swift in Sources */,
 				B58784262423A22A00819534 /* User.swift in Sources */,
 				2E4C23B6243BBB3C00BECA13 /* StretchyHeaderLayout.swift in Sources */,
 				B5D6C5302424FAB90064B7C0 /* CodeTextFieldView.swift in Sources */,
+				B57FA37124475E8C002ED43D /* NetworkResponse.swift in Sources */,
 				B5EC13B8242B622C00BDDF9C /* PhoneNumberVerificationViewController.swift in Sources */,
 				B5E4D51D243E37B600E8834F /* SearchHeaderView.swift in Sources */,
 				B5EC13BF242B72CA00BDDF9C /* ResendCodeView.swift in Sources */,
@@ -834,6 +898,8 @@
 				2E0DE83A2438F82900BD0A53 /* TabBarViewController.swift in Sources */,
 				2E4C23C6243DFB6C00BECA13 /* DetailCenterView.swift in Sources */,
 				B5200EE0242499BA005836E6 /* InputView.swift in Sources */,
+				B57FA377244762FF002ED43D /* SendMessageModel.swift in Sources */,
+				B57FA36524475E7C002ED43D /* ParseManager.swift in Sources */,
 				B5200EDC2424972E005836E6 /* LoaderBaseViewController.swift in Sources */,
 				2E4C23CC243E096400BECA13 /* DetailUserInfoView.swift in Sources */,
 				B58783F12423A05900819534 /* AlypKet.xcdatamodeld in Sources */,
@@ -845,6 +911,8 @@
 				B5ABBDB3243C2771002353FD /* ChatController.swift in Sources */,
 				2E8C473D2445C19E00D9E967 /* FavouritePageViewController.swift in Sources */,
 				2E0DE8442438FEC600BD0A53 /* MenuBar.swift in Sources */,
+				B57FA36F24475E8C002ED43D /* Result.swift in Sources */,
+				B57FA36324475E76002ED43D /* Endpoints.swift in Sources */,
 				B5EC13BD242B6BBC00BDDF9C /* VerificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,11 +14,11 @@ class UserManager {
 
     //    MARK: - Creation of user session
 
-    static func createSessionWithUser(_ user: User) throws {
+    static func createSessionWithUser(_ user: AuthModel) throws {
         let jsonEncoder = JSONEncoder()
         do {
             
-            let userData = try jsonEncoder.encode(user)
+            let userData = try jsonEncoder.encode(user.user)
             guard let token = user.token else { return }
             setCurrentToken(to: token)
             userDefaults.set(userData, forKey: Key.currentUser)
