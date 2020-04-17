@@ -29,7 +29,8 @@ class BottomFilterView: UIView {
     
     lazy var fromLocationInputView: TitleInputView = {
         let view = TitleInputView(title: "Отправка от", inputType: .plainText, placeholder: "Алматинская область, Алматы", icon: #imageLiteral(resourceName: "Icon Color-6"))
-        
+        view.titleLabel.textColor = #colorLiteral(red: 0.007843137255, green: 0.09803921569, blue: 0.1254901961, alpha: 0.3951460041)
+
         return view
     }()
     
@@ -51,7 +52,7 @@ class BottomFilterView: UIView {
     
     let city =  ["Almaty","Astana","Aktau","Nur-Sultan"]
     
-    lazy var massSlider:RangeSlider = {
+    lazy var massSlider: RangeSlider = {
         let slider = RangeSlider()
         let circleImage = ViewMaker.shared.makeCircleWith(size: CGSize(width: 14, height: 14),
                                                           backgroundColor: #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9882352941, alpha: 1))
@@ -63,7 +64,7 @@ class BottomFilterView: UIView {
         return slider
     }()
     
-    let sliderText:UILabel = {
+    let sliderText: UILabel = {
         let label = UILabel()
         label.font = .getProximaNovaMediumFont(on: 18)
         label.textAlignment = .center
