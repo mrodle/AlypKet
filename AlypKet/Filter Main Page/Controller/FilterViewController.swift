@@ -12,13 +12,15 @@ import UIKit
 class FilterViewController: LoaderBaseViewController {
     
     
-    let topView:TopFilterView = {
+    let topView: TopFilterView = {
        let view = TopFilterView()
+        
        return view
     }()
     
-    let bottomView:BottomFilterView = {
+    let bottomView: BottomFilterView = {
         let view = BottomFilterView()
+        
         return view
     }()
     
@@ -39,6 +41,8 @@ class FilterViewController: LoaderBaseViewController {
         let cancelImage = UIImage(named: "close")?.withRenderingMode(.alwaysTemplate)
         let cancelBarButtonItem = UIBarButtonItem(image: cancelImage, style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItem = cancelBarButtonItem
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.title = "Фильтр"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
 
     }
@@ -53,14 +57,11 @@ class FilterViewController: LoaderBaseViewController {
         contentView.addSubview(topView)
         topView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(250)
         }
         contentView.addSubview(bottomView)
         bottomView.snp.makeConstraints { (make) in
             make.top.equalTo(topView.snp.bottom)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(200)
-            make.bottom.equalTo(-200)
+            make.bottom.left.right.equalToSuperview()
         }
     }
 }

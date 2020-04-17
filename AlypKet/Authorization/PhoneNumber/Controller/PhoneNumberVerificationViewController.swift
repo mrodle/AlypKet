@@ -166,16 +166,22 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
     private func getLogin() -> Void {
         self.showLoader()
         self.verificationView.codeTextFields.errorLabel.text = ""
-        let params: Parameters = ["phone": phone, "password": "\(phone)"]
+        let params: Parameters = ["phone": phone]
         ParseManager.shared.postRequest(url: AppConstants.API.getLogin, parameters: params, success: { (result: AuthModel) in
             self.hideLoader()
             do { try? UserManager.createSessionWithUser(result) }
-            let vc = RegistrationViewController()
-            vc.phone = self.phone
-            self.navigationController?.pushViewController(vc, animated: true)
+            AppCenter.shared.startWithToken()
+            
         }) { (error) in
-            self.verificationView.codeTextFields.errorLabel.text = error
-            self.showErrorMessage(error)
+//            self.showErrorMessage(error)
+
+            if error == "Пользователь не найден!" {
+                let vc = RegistrationViewController()
+                vc.phone = self.phone
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.verificationView.codeTextFields.errorLabel.text = error
+            }
         }
     }
     //    MARK: - Objc functions

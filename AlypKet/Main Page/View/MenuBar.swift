@@ -66,15 +66,17 @@ class MenuBar: UIView ,UITextFieldDelegate{
         addSubview(button)
         addSubview(searchBar)
         button.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(-12)
-            make.height.equalToSuperview()
+            make.right.equalTo(-12)
+            make.height.equalTo(40)
+            make.bottom.equalTo(-8)
             make.width.equalTo(button.snp.height)
         }
         searchBar.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(12)
             make.right.equalTo(button.snp.left).offset(-8)
-            make.height.equalToSuperview()
+            make.height.equalTo(40)
+            make.bottom.equalTo(-8)
         }
     }
  

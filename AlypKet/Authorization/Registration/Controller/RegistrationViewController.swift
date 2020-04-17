@@ -85,7 +85,6 @@ class RegistrationViewController: LoaderBaseViewController {
             "iin": Int(bottomView.iinTextField.viewModel.iin)!,
             "phone": phone,
             "email": bottomView.emailTextField.textField.textField.text!,
-            "password": "\(phone)",
             "role": "user"
         ]
         

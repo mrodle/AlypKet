@@ -103,6 +103,7 @@ class TopFilterView: UIView {
         sliderText.snp.makeConstraints { (make) in
             make.top.equalTo(massSlider.snp.bottom).offset(16)
             make.centerX.equalToSuperview()
+            make.bottom.equalTo(-8)
         }
     }
     

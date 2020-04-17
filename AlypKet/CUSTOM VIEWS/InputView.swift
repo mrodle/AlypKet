@@ -107,23 +107,33 @@ class InputView: UIView {
             self.phoneTextField.snp.makeConstraints { (make) in
                 make.top.bottom.equalToSuperview()
                 make.left.equalTo(16)
-                make.right.equalTo(-8)
+                if icon == nil {
+                    make.right.equalTo(-8)
+                } else {
+                    make.right.equalTo(-40)
+                }
             }
         } else {
             self.addSubview(self.textField)
             self.textField.snp.makeConstraints { (make) in
                 make.top.bottom.equalToSuperview()
                 make.left.equalTo(16)
-                make.right.equalTo(-8)
+                if icon == nil {
+                    make.right.equalTo(-8)
+                } else {
+                    make.right.equalTo(-40)
+                }
             }
         }
-        addSubview(iconView)
-        iconView.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-10)
-            make.height.width.equalTo(23)
+        
+        if icon != nil {
+            addSubview(iconView)
+            iconView.snp.makeConstraints { (make) in
+                make.centerY.equalToSuperview()
+                make.right.equalToSuperview().offset(-10)
+                make.height.width.equalTo(23)
+            }
         }
-
     }
     
     private func setupGesture() -> Void {
