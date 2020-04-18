@@ -21,6 +21,13 @@
 		2E6FFA5B2447BDBA0041D0CE /* ViewMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA5A2447BDBA0041D0CE /* ViewMarker.swift */; };
 		2E6FFA5D2447C1750041D0CE /* BottomFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA5C2447C1750041D0CE /* BottomFilterView.swift */; };
 		2E6FFA5F244884100041D0CE /* PopUpLongPressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA5E2448840F0041D0CE /* PopUpLongPressView.swift */; };
+		2E6FFA7A244B35C60041D0CE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA79244B35C60041D0CE /* ProfileViewController.swift */; };
+		2E6FFA7C244B35DD0041D0CE /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA7B244B35DD0041D0CE /* ProfileNavBar.swift */; };
+		2E6FFA7E244B35F50041D0CE /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA7D244B35F50041D0CE /* ProfileHeaderView.swift */; };
+		2E6FFA80244B360D0041D0CE /* ProfileContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA7F244B360D0041D0CE /* ProfileContentViewCell.swift */; };
+		2E6FFA85244B364D0041D0CE /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA84244B364D0041D0CE /* ProfileEditingViewController.swift */; };
+		2E6FFA87244B366B0041D0CE /* CenterEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA86244B366B0041D0CE /* CenterEditView.swift */; };
+		2E6FFA8C244B7C490041D0CE /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA8B244B7C490041D0CE /* NotificationViewController.swift */; };
 		2E8C473D2445C19E00D9E967 /* FavouritePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8C473C2445C19E00D9E967 /* FavouritePageViewController.swift */; };
 		2EBEC1AF243A0E21009D8F7D /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBEC1AE243A0E21009D8F7D /* BaseCell.swift */; };
 		2EBEC1B1243B28FC009D8F7D /* FilterLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBEC1B0243B28FC009D8F7D /* FilterLauncher.swift */; };
@@ -121,6 +128,13 @@
 		2E6FFA5A2447BDBA0041D0CE /* ViewMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMarker.swift; sourceTree = "<group>"; };
 		2E6FFA5C2447C1750041D0CE /* BottomFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomFilterView.swift; sourceTree = "<group>"; };
 		2E6FFA5E2448840F0041D0CE /* PopUpLongPressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpLongPressView.swift; sourceTree = "<group>"; };
+		2E6FFA79244B35C60041D0CE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2E6FFA7B244B35DD0041D0CE /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
+		2E6FFA7D244B35F50041D0CE /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		2E6FFA7F244B360D0041D0CE /* ProfileContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentViewCell.swift; sourceTree = "<group>"; };
+		2E6FFA84244B364D0041D0CE /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
+		2E6FFA86244B366B0041D0CE /* CenterEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterEditView.swift; sourceTree = "<group>"; };
+		2E6FFA8B244B7C490041D0CE /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		2E8C473C2445C19E00D9E967 /* FavouritePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePageViewController.swift; sourceTree = "<group>"; };
 		2EBEC1AE243A0E21009D8F7D /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		2EBEC1B0243B28FC009D8F7D /* FilterLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterLauncher.swift; sourceTree = "<group>"; };
@@ -292,6 +306,82 @@
 				2E6FFA582447BD630041D0CE /* RangeSlider.swift */,
 				2E6FFA5A2447BDBA0041D0CE /* ViewMarker.swift */,
 				2E6FFA5C2447C1750041D0CE /* BottomFilterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E6FFA76244B359F0041D0CE /* Profile Page */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA78244B35B70041D0CE /* View */,
+				2E6FFA77244B35B00041D0CE /* Controller */,
+			);
+			path = "Profile Page";
+			sourceTree = "<group>";
+		};
+		2E6FFA77244B35B00041D0CE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA79244B35C60041D0CE /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2E6FFA78244B35B70041D0CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA7B244B35DD0041D0CE /* ProfileNavBar.swift */,
+				2E6FFA7D244B35F50041D0CE /* ProfileHeaderView.swift */,
+				2E6FFA7F244B360D0041D0CE /* ProfileContentViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E6FFA81244B36240041D0CE /* Profile Edit */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA83244B363B0041D0CE /* View */,
+				2E6FFA82244B36350041D0CE /* Controller */,
+			);
+			path = "Profile Edit";
+			sourceTree = "<group>";
+		};
+		2E6FFA82244B36350041D0CE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA84244B364D0041D0CE /* ProfileEditingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2E6FFA83244B363B0041D0CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA86244B366B0041D0CE /* CenterEditView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E6FFA88244B798F0041D0CE /* Notification Page */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA8A244B79A00041D0CE /* View */,
+				2E6FFA89244B799B0041D0CE /* Controller */,
+			);
+			path = "Notification Page";
+			sourceTree = "<group>";
+		};
+		2E6FFA89244B799B0041D0CE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA8B244B7C490041D0CE /* NotificationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2E6FFA8A244B79A00041D0CE /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -517,6 +607,9 @@
 		B58783EA2423A05900819534 /* AlypKet */ = {
 			isa = PBXGroup;
 			children = (
+				2E6FFA88244B798F0041D0CE /* Notification Page */,
+				2E6FFA81244B36240041D0CE /* Profile Edit */,
+				2E6FFA76244B359F0041D0CE /* Profile Page */,
 				B52EAECE244B23000044E479 /* Protocol */,
 				2E6FFA512447A9460041D0CE /* Filter Main Page */,
 				2E8C473A2445C17D00D9E967 /* Favourite Page */,
@@ -948,6 +1041,7 @@
 				B5200EEA2424DB0E005836E6 /* SignInViewModel.swift in Sources */,
 				2E4C23C2243DD3C200BECA13 /* DetailMainPageController.swift in Sources */,
 				B5200EE224249A09005836E6 /* PhoneTextField.swift in Sources */,
+				2E6FFA87244B366B0041D0CE /* CenterEditView.swift in Sources */,
 				B58784202423A1D100819534 /* UserManager.swift in Sources */,
 				B587842C2423A52300819534 /* WelcomeViewController.swift in Sources */,
 				2E6FFA5B2447BDBA0041D0CE /* ViewMarker.swift in Sources */,
@@ -955,6 +1049,7 @@
 				B5200ECE242486AD005836E6 /* MainButton.swift in Sources */,
 				B58784222423A1F600819534 /* Key.swift in Sources */,
 				B5EC13C5242B866D00BDDF9C /* RegistrationBottomView.swift in Sources */,
+				2E6FFA80244B360D0041D0CE /* ProfileContentViewCell.swift in Sources */,
 				B5E4D51A243E353000E8834F /* SearchInputView.swift in Sources */,
 				B5200EE424249A82005836E6 /* TitleInputView.swift in Sources */,
 				B5ABBDBA243C297C002353FD /* BackNavBarView.swift in Sources */,
@@ -963,6 +1058,7 @@
 				B587842A2423A49700819534 /* AppCenter.swift in Sources */,
 				B5ABBDBC243C2AF7002353FD /* MessageCell.swift in Sources */,
 				B57FA3792447646D002ED43D /* AuthModel.swift in Sources */,
+				2E6FFA8C244B7C490041D0CE /* NotificationViewController.swift in Sources */,
 				B57FA37324475E8C002ED43D /* Router.swift in Sources */,
 				B58783EC2423A05900819534 /* AppDelegate.swift in Sources */,
 				B58399ED243CCA2700E98A4C /* MessageInputView.swift in Sources */,
@@ -981,8 +1077,10 @@
 				B5EC13BF242B72CA00BDDF9C /* ResendCodeView.swift in Sources */,
 				B5EC13C2242B860B00BDDF9C /* RegistrationViewController.swift in Sources */,
 				2E4C23C8243DFD9B00BECA13 /* DetailDescriptionView.swift in Sources */,
+				2E6FFA85244B364D0041D0CE /* ProfileEditingViewController.swift in Sources */,
 				B52EAECD244B22920044E479 /* AllItemViewModel.swift in Sources */,
 				2E0DE83A2438F82900BD0A53 /* TabBarViewController.swift in Sources */,
+				2E6FFA7E244B35F50041D0CE /* ProfileHeaderView.swift in Sources */,
 				2E4C23C6243DFB6C00BECA13 /* DetailCenterView.swift in Sources */,
 				B5200EE0242499BA005836E6 /* InputView.swift in Sources */,
 				B57FA377244762FF002ED43D /* SendMessageModel.swift in Sources */,
@@ -997,6 +1095,7 @@
 				B5E4D512243E0C5800E8834F /* SliderImageView.swift in Sources */,
 				B52EAED0244B23110044E479 /* ProcessViewDelegate.swift in Sources */,
 				B5E4D51F243E440A00E8834F /* ChatListTableViewCell.swift in Sources */,
+				2E6FFA7C244B35DD0041D0CE /* ProfileNavBar.swift in Sources */,
 				2E6FFA542447AA120041D0CE /* FilterViewController.swift in Sources */,
 				2E0DE8422438F8CB00BD0A53 /* MainPageViewController.swift in Sources */,
 				B5ABBDB3243C2771002353FD /* ChatController.swift in Sources */,
@@ -1004,6 +1103,7 @@
 				2E8C473D2445C19E00D9E967 /* FavouritePageViewController.swift in Sources */,
 				2E0DE8442438FEC600BD0A53 /* MenuBar.swift in Sources */,
 				B57FA36F24475E8C002ED43D /* Result.swift in Sources */,
+				2E6FFA7A244B35C60041D0CE /* ProfileViewController.swift in Sources */,
 				B57FA36324475E76002ED43D /* Endpoints.swift in Sources */,
 				B5EC13BD242B6BBC00BDDF9C /* VerificationView.swift in Sources */,
 			);

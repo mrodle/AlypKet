@@ -52,7 +52,7 @@ class TabBarViewController: UITabBarController {
         chatController.tabBarItem = UITabBarItem.init(title: "Сообщения", image: #imageLiteral(resourceName: "🔹 Icon Color-4"), tag: 2)
 
         
-        let profileController = UIViewController().inNavigation()
+        let profileController = ProfileViewController().inNavigation()
         profileController.tabBarItem = UITabBarItem.init(title: "Профиль", image: #imageLiteral(resourceName: "🔹 Icon Color-5"), tag: 3)
 
         viewControllers = [mainController, favouriteController, addTabbarController, chatController, profileController]
