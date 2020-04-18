@@ -178,8 +178,30 @@ extension String {
         let framesetter = CTFramesetterCreateWithAttributedString(attString)
         return CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(location: 0,length: 0), nil, CGSize(width: width, height: .greatestFiniteMagnitude), nil)
     }
+    
     func notEmpty() -> Bool {
         return self.replacingOccurrences(of: " ", with: "") != ""
     }
 
+    func dateConfiguration() -> String {
+        var date: String = ""
+        let createdDate = "\(self.prefix(10))"
+        let createdTime = "\("\(self.prefix(16))".suffix(5))"
+        let monthList = ["января ", "февраля ", "марта ", "апреля ", "мая ", "июня ", "июля ", "августа ", "сентября ", "октября ", "ноября ", "декабря "]
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let today = Date()
+        
+        if  formatter.string(from: today.addingTimeInterval(TimeInterval(-86400))) == createdDate {
+            date = "Вчера в "
+        } else if formatter.string(from: today) == createdDate {
+            date = "Сегодня в "
+        } else {
+            date = "\("\(self.prefix(10))".suffix(2)) " + monthList[Int("\("\(self.prefix(7))".suffix(2))")! - 1]
+        }
+        
+        return date + createdTime
+    }
 }

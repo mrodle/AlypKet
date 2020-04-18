@@ -84,7 +84,7 @@ extension FavouritePageViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-       let vc = DetailMainPageController()
+       let vc = DetailMainPageController(id: "")
         self.tabBarController!.navigationController?.pushViewController(vc, animated: true)
     }
     

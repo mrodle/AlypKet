@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainPageViewController: UIViewController {
+class MainPageViewController: LoaderBaseViewController {
     
     lazy var menuBar: MenuBar = {
         let mb = MenuBar()
@@ -16,7 +16,23 @@ class MainPageViewController: UIViewController {
         return mb
     }()
     
+    lazy var viewModel: AllItemViewModel = {
+        let view = AllItemViewModel()
+        view.delegate = self
+        
+        return view
+    }()
+    
     let settingsLauncher = FilterLauncher()
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateList), for: .valueChanged)
+        refresh.tintColor = .mainColor
+        
+        return refresh
+    }()
+
     
     let imageArray =  [#imageLiteral(resourceName: "Rectangle 274"), #imageLiteral(resourceName: "Rectangle 275"), #imageLiteral(resourceName: "Rectangle 275-2"), #imageLiteral(resourceName: "Rectangle 275-3")]
     
@@ -26,21 +42,37 @@ class MainPageViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
+        collectionView.refreshControl = refreshControl
         collectionView.register(BaseCell.self, forCellWithReuseIdentifier: BaseCell.cellIdentifier())
+        
         return collectionView
     }()
-    
-   
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
         setupNavBarButtons()
         setupViews()
-        
+        setupLoaderView()
+        showLoader()
+        updateList()
     }
     
+    func setupViews(){
+        view.addSubview(menuBar)
+        menuBar.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        addSubview(collectionView)
+        
+        
+        collectionView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.menuBar.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
+    }
+
     func setupNavBarButtons(){
         let searchImage = UIImage(named: "notification")?.withRenderingMode(.alwaysOriginal)
         let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
@@ -59,39 +91,38 @@ class MainPageViewController: UIViewController {
         let vc = UINavigationController(rootViewController: FilterViewController())
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
-//        self.show(vc, sender: self)
     }
     
     @objc func handleCity(){
         settingsLauncher.showSettings()
     }
     
-    func setupViews(){
-        view.addSubview(menuBar)
-        menuBar.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
-            make.height.equalTo(50)
-        }
-        addSubview(collectionView)
-        
-        
-        collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.menuBar.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
-        }
+    @objc func updateList() -> Void {
+        viewModel.getItemList()
+    }
+}
+
+extension MainPageViewController: ProcessViewDelegate {
+    func updateUI() {
+        collectionView.reloadData()
+        refreshControl.endRefreshing()
     }
     
+    func endRefreshing() {
+        refreshControl.endRefreshing()
+    }
 }
 
 extension MainPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return viewModel.itemList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseCell.cellIdentifier(), for: indexPath) as! BaseCell
-        cell.imageView.image = imageArray[indexPath.row]
+        cell.imageView.image = #imageLiteral(resourceName: "Rectangle 275-2")
+        cell.configuration(item: viewModel.itemList[indexPath.row])
         return cell
     }
     
@@ -101,7 +132,7 @@ extension MainPageViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-       let vc = DetailMainPageController()
+        let vc = DetailMainPageController(id: viewModel.itemList[indexPath.item]._id)
         self.tabBarController!.navigationController?.pushViewController(vc, animated: true)
     }
     

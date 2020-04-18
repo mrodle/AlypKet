@@ -28,7 +28,7 @@ class DetailCenterView: UIView {
     }()
     
     
-    let priceLabel:UILabel = {
+    let priceLabel: UILabel = {
         let label = UILabel()
         label.text = "5 000тг."
         label.font = .getProximaNovaSemiboldFont(on: 26)
@@ -37,9 +37,9 @@ class DetailCenterView: UIView {
         return label
     }()
     
-    let weightLabel:UILabel = {
+    let weightLabel: UILabel = {
         let label = UILabel()
-        label.text = "Вес: 3кг"
+        label.text = "   Вес: 3кг   "
         label.font = .getProximaNovaMediumFont(on: 18)
         label.layer.borderWidth = 1
         label.layer.borderColor = #colorLiteral(red: 0.8784313725, green: 0.8980392157, blue: 0.9254901961, alpha: 1)
@@ -50,7 +50,22 @@ class DetailCenterView: UIView {
         return label
     }()
     
-    let locationLabel:UILabel = {
+    let fromLocationLabel: UILabel = {
+        let label = UILabel()
+        label.text = "От: Талдыкорган"
+        label.font = .getProximaNovaMediumFont(on: 18)
+        label.layer.borderWidth = 1
+        label.layer.borderColor = #colorLiteral(red: 0.8784313725, green: 0.8980392157, blue: 0.9254901961, alpha: 1)
+        label.numberOfLines = 2
+        label.textColor = #colorLiteral(red: 0.007843137255, green: 0.09803921569, blue: 0.1254901961, alpha: 1)
+        label.textAlignment = .center
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 10
+        return label
+    }()
+
+    
+    let toLocationLabel:UILabel = {
         let label = UILabel()
         label.text = "Доставить до: Талдыкорган"
         label.font = .getProximaNovaMediumFont(on: 18)
@@ -114,20 +129,38 @@ class DetailCenterView: UIView {
         weightLabel.snp.makeConstraints { (make) in
             make.top.equalTo(dividerLineView.snp.bottom).offset(16)
             make.left.equalTo(16)
-            make.size.equalTo(CGSize(width: 99, height: 36))
+            make.height.equalTo(36)
         }
         
-        addSubview(locationLabel)
+        addSubview(toLocationLabel)
         
-        locationLabel.snp.makeConstraints { (make) in
+        toLocationLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(dividerLineView.snp.bottom).offset(16)
+            make.left.equalTo(weightLabel.snp.right).offset(16)
+            make.right.equalTo(-16)
+            make.height.equalTo(36)
+        }
+        
+        addSubview(fromLocationLabel)
+        
+        fromLocationLabel.snp.makeConstraints { (make) in
             make.top.equalTo(weightLabel.snp.bottom).offset(16)
             make.left.equalTo(16)
-            make.size.equalTo(CGSize(width: 262, height: 36))
+            make.right.equalTo(-16)
+            make.height.equalTo(36)
             make.bottom.equalTo(-16)
         }
         
     }
     
+    func setupData(_ item: ItemModel) -> Void {
+        self.toLocationLabel.text = "   От:. \(item.toLocation)   "
+        self.fromLocationLabel.text = "   Доставить до: \(item.fromLocation)   "
+        self.dateLabel.text = item.createdAt.dateConfiguration()
+        self.itemNameLabel.text = item.title
+        self.priceLabel.text = "\(item.price) тг"
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
