@@ -40,6 +40,7 @@ class BaseCell:UICollectionViewCell{
         let label = UILabel()
         label.text = "Талдыкорган"
         label.textColor = #colorLiteral(red: 0.2, green: 0.247, blue: 0.322, alpha: 1)
+        label.numberOfLines = 2
         label.font = .getProximaNovaMediumFont(on: 14)
         return label
     }()
@@ -80,25 +81,61 @@ class BaseCell:UICollectionViewCell{
     }
     
     func setupView(){
+        
         favouriteButton.addTarget(self, action: #selector(saveToFavourite), for: .touchUpInside)
+        
         addSubview(imageView)
+        imageView.snp.makeConstraints { (make) in
+            make.left.right.top.equalToSuperview()
+            make.height.equalTo(frame.width-30)
+        }
+        
         imageView.addSubview(favouriteButton)
-        addSubview(nameLabel)
-        addSubview(priceLabel)
-        addSubview(cityLabel)
-        addSubview(timeLabel)
-        imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width-30)
-        nameLabel.frame = CGRect(x: 3, y: frame.width - 30 + 8, width: frame.width, height: 40)
-        priceLabel.frame = CGRect(x: 3, y: frame.width - 30 + 50, width: frame.width, height: 20)
-        cityLabel.frame = CGRect(x: 3, y: frame.width - 30 + 70, width: frame.width, height: 20)
-        timeLabel.frame = CGRect(x: 3, y: frame.width - 30 + 90, width: frame.width, height: 20)
         favouriteButton.snp.makeConstraints { (make) in
             make.top.equalTo(imageView.snp.top).offset(10)
             make.right.equalTo(imageView.snp.right).offset(-10)
             make.width.height.equalTo(32)
         }
+
+        addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(imageView.snp.bottom).offset(8)
+            make.left.right.equalToSuperview()
+        }
+        
+        addSubview(priceLabel)
+        priceLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.left.right.equalToSuperview()
+        }
+
+        addSubview(cityLabel)
+        cityLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(priceLabel.snp.bottom).offset(8)
+            make.left.right.equalToSuperview()
+        }
+        
+        addSubview(timeLabel)
+        timeLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(cityLabel.snp.bottom).offset(2)
+            make.left.right.equalToSuperview()
+        }
+
+//        imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width-30)
+//        nameLabel.frame = CGRect(x: 3, y: frame.width - 30 + 8, width: frame.width, height: 40)
+//        priceLabel.frame = CGRect(x: 3, y: frame.width - 30 + 50, width: frame.width, height: 20)
+//        cityLabel.frame = CGRect(x: 3, y: frame.width - 30 + 70, width: frame.width, height: 20)
+//        timeLabel.frame = CGRect(x: 3, y: frame.width - 30 + 90, width: frame.width, height: 20)
+        
     }
-    
+
+    func configuration(item: ItemModel) -> Void {
+        nameLabel.text = item.title
+        priceLabel.text = "\(item.price) тг"
+        cityLabel.text = "\(item.fromLocation) - \(item.toLocation)"
+        timeLabel.text = item.createdAt.dateConfiguration()
+    }
+
     
 }
 

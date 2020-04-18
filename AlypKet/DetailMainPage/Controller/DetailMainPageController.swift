@@ -11,6 +11,14 @@ import UIKit
 class DetailMainPageController: LoaderBaseViewController {
     
 //      MARK: - Properties
+    var id: String
+    lazy var viewModel: ItemViewModel = {
+        let view = ItemViewModel()
+        view.delegate = self
+        
+        return view
+    }()
+
     lazy var navBar: BackNavBarView = {
         let view = BackNavBarView(title: "", rightButtonImage: #imageLiteral(resourceName: "star"))
         view.backButton.setImage(#imageLiteral(resourceName: "arrow_back-1"), for: .normal)
@@ -53,6 +61,7 @@ class DetailMainPageController: LoaderBaseViewController {
         button.layer.cornerRadius = 10
         button.setTitleColor(#colorLiteral(red: 0.2352941176, green: 0.568627451, blue: 0.8941176471, alpha: 1), for: .normal)
         button.backgroundColor = .clear
+        
         return button
     }()
     
@@ -63,8 +72,20 @@ class DetailMainPageController: LoaderBaseViewController {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
         button.backgroundColor = #colorLiteral(red: 0.2352941176, green: 0.568627451, blue: 0.8941176471, alpha: 1)
+        
         return button
     }()
+    
+//    MARK: - Initialization
+    
+    init(id: String) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 //    MARK: - Lifecycle
     
@@ -72,6 +93,10 @@ class DetailMainPageController: LoaderBaseViewController {
         super.viewDidLoad()
         setupView()
         setupAction()
+        setupLoaderView()
+        showLoader()
+        self.getData()
+
         // Do any additional setup after loading the view.
     }
     
@@ -105,7 +130,6 @@ class DetailMainPageController: LoaderBaseViewController {
         detailCenterView.snp.makeConstraints { (make) in
             make.top.equalTo(sliderImageView.snp.bottom)
             make.left.right.equalToSuperview()
-//            make.height.equalTo(270)
         }
         
         contentView.addSubview(detailDescriptionView)
@@ -114,7 +138,6 @@ class DetailMainPageController: LoaderBaseViewController {
         detailDescriptionView.snp.makeConstraints { (make) in
             make.top.equalTo(detailCenterView.snp.bottom)
             make.left.right.equalToSuperview()
-//            make.height.equalTo(200)
         }
         
         contentView.addSubview(detailUserInfoView)
@@ -122,7 +145,6 @@ class DetailMainPageController: LoaderBaseViewController {
         detailUserInfoView.snp.makeConstraints { (make) in
             make.top.equalTo(detailDescriptionView.snp.bottom)
             make.left.right.equalToSuperview()
-//            make.height.equalTo(120)
         }
         
         
@@ -142,7 +164,6 @@ class DetailMainPageController: LoaderBaseViewController {
             make.left.equalTo(writeButton.snp.right).offset(8)
             make.right.equalTo(-16)
             make.width.height.equalTo(writeButton)
-//            make.width.equalTo(writeButton.snp.width)
         }
     }
     
@@ -152,6 +173,28 @@ class DetailMainPageController: LoaderBaseViewController {
             self.present(controller, animated: true, completion: nil)
         }
     }
+    
+    private func setupData(_ item: ItemModel?) -> Void {
+        guard let item = item else { return }
+        self.detailCenterView.setupData(item)
+        self.detailDescriptionView.setupData(item)
+    }
+    
+    private func getData() -> Void {
+        viewModel.getItem(id: id)
+    }
+}
+
+extension DetailMainPageController: ProcessViewDelegate {
+    func updateUI() {
+        self.setupData(viewModel.item)
+    }
+    
+    func endRefreshing() {
+        
+    }
+    
+    
 }
 
 extension DetailMainPageController: UIScrollViewDelegate {

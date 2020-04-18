@@ -10,6 +10,7 @@ import UIKit
 
 
 class DetailDescriptionView: UIView {
+    
     let tittleLabel:UILabel = {
         let label = UILabel()
         label.text = "Описание"
@@ -27,7 +28,7 @@ class DetailDescriptionView: UIView {
         return label
     }()
     
-    let showAllButotn:UIButton = {
+    let showAllButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("Показать всё", for: .normal)
         btn.titleLabel?.textAlignment = .right
@@ -62,9 +63,9 @@ class DetailDescriptionView: UIView {
             make.right.equalTo(-16)
         }
         
-        addSubview(showAllButotn)
+        addSubview(showAllButton)
         
-        showAllButotn.snp.makeConstraints { (make) in
+        showAllButton.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize(width: 120, height: 24))
             make.right.equalTo(-16)
             make.top.equalTo(descriptionLabel.snp.bottom).offset(8)
@@ -73,9 +74,25 @@ class DetailDescriptionView: UIView {
     }
     
     private func setupAction() -> Void {
-        showAllButotn.addTarget(self, action: #selector(showAllAction(sender:)), for: .touchUpInside)
+        showAllButton.addTarget(self, action: #selector(showAllAction(sender:)), for: .touchUpInside)
     }
     
+    func setupData(_ item: ItemModel) -> Void {
+        self.descriptionLabel.text = item.description
+        self.hideAllButton()
+    }
+
+    func hideAllButton() -> Void {
+        showAllButton.isHidden = self.descriptionLabel.numberOfLines <= 4
+        if self.descriptionLabel.numberOfLines <= 4 {
+            showAllButton.snp.remakeConstraints { (make) in
+                make.size.equalTo(CGSize(width: 120, height: 0))
+                make.right.equalTo(-16)
+                make.top.equalTo(descriptionLabel.snp.bottom)
+                make.bottom.equalTo(-32)
+            }
+        }
+    }
     @objc func showAllAction(sender: UIButton) -> Void {
         if sender.titleLabel?.text == "Показать всё" {
             descriptionLabel.numberOfLines = 0

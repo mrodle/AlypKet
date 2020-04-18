@@ -36,6 +36,11 @@
 		B5200EE82424A91B005836E6 /* HaventAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5200EE72424A91B005836E6 /* HaventAccountView.swift */; };
 		B5200EEA2424DB0E005836E6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5200EE92424DB0E005836E6 /* SignInViewModel.swift */; };
 		B5200EEC2424DB43005836E6 /* ViewModelConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5200EEB2424DB43005836E6 /* ViewModelConfigurable.swift */; };
+		B52EAECD244B22920044E479 /* AllItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAECC244B22920044E479 /* AllItemViewModel.swift */; };
+		B52EAED0244B23110044E479 /* ProcessViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAECF244B23110044E479 /* ProcessViewDelegate.swift */; };
+		B52EAED4244B3BF00044E479 /* ItemListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAED3244B3BF00044E479 /* ItemListModel.swift */; };
+		B52EAED7244B3C5C0044E479 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAED6244B3C5C0044E479 /* ItemModel.swift */; };
+		B52EAEDA244B6D550044E479 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAED9244B6D550044E479 /* ItemViewModel.swift */; };
 		B57FA36324475E76002ED43D /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36224475E76002ED43D /* Endpoints.swift */; };
 		B57FA36524475E7C002ED43D /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36424475E7C002ED43D /* ParseManager.swift */; };
 		B57FA36E24475E8C002ED43D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FA36724475E8B002ED43D /* Response.swift */; };
@@ -131,6 +136,11 @@
 		B5200EE72424A91B005836E6 /* HaventAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaventAccountView.swift; sourceTree = "<group>"; };
 		B5200EE92424DB0E005836E6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		B5200EEB2424DB43005836E6 /* ViewModelConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelConfigurable.swift; sourceTree = "<group>"; };
+		B52EAECC244B22920044E479 /* AllItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemViewModel.swift; sourceTree = "<group>"; };
+		B52EAECF244B23110044E479 /* ProcessViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessViewDelegate.swift; sourceTree = "<group>"; };
+		B52EAED3244B3BF00044E479 /* ItemListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListModel.swift; sourceTree = "<group>"; };
+		B52EAED6244B3C5C0044E479 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		B52EAED9244B6D550044E479 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		B57FA36224475E76002ED43D /* Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		B57FA36424475E7C002ED43D /* ParseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
 		B57FA36724475E8B002ED43D /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -232,8 +242,9 @@
 		2E0DE83C2438F87100BD0A53 /* Main Page */ = {
 			isa = PBXGroup;
 			children = (
+				B52EAED2244B3BE00044E479 /* Model */,
+				B52EAED1244B3BB90044E479 /* ViewModel */,
 				2E0DE8402438F89300BD0A53 /* Controller */,
-				2E0DE83E2438F87D00BD0A53 /* ViewModel */,
 				2E0DE83D2438F87900BD0A53 /* View */,
 			);
 			path = "Main Page";
@@ -247,13 +258,6 @@
 				2EBEC1B0243B28FC009D8F7D /* FilterLauncher.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		2E0DE83E2438F87D00BD0A53 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2E0DE8402438F89300BD0A53 /* Controller */ = {
@@ -311,6 +315,7 @@
 		2EBEC1B2243B4F83009D8F7D /* DetailMainPage */ = {
 			isa = PBXGroup;
 			children = (
+				B52EAED5244B3C330044E479 /* Model */,
 				2EBEC1B6243B4FC9009D8F7D /* Protocol */,
 				2EBEC1B5243B4FC3009D8F7D /* View */,
 				2EBEC1B4243B4FAF009D8F7D /* ViewModel */,
@@ -330,6 +335,7 @@
 		2EBEC1B4243B4FAF009D8F7D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B52EAED9244B6D550044E479 /* ItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -390,6 +396,38 @@
 				B5200EEB2424DB43005836E6 /* ViewModelConfigurable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B52EAECE244B23000044E479 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B52EAECF244B23110044E479 /* ProcessViewDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B52EAED1244B3BB90044E479 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B52EAECC244B22920044E479 /* AllItemViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B52EAED2244B3BE00044E479 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B52EAED3244B3BF00044E479 /* ItemListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B52EAED5244B3C330044E479 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B52EAED6244B3C5C0044E479 /* ItemModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B57FA36124475E5E002ED43D /* NetworkManager */ = {
@@ -479,6 +517,7 @@
 		B58783EA2423A05900819534 /* AlypKet */ = {
 			isa = PBXGroup;
 			children = (
+				B52EAECE244B23000044E479 /* Protocol */,
 				2E6FFA512447A9460041D0CE /* Filter Main Page */,
 				2E8C473A2445C17D00D9E967 /* Favourite Page */,
 				2EBEC1B2243B4F83009D8F7D /* DetailMainPage */,
@@ -932,6 +971,7 @@
 				2E6FFA572447ACF70041D0CE /* TopFilterView.swift in Sources */,
 				B57FA36E24475E8C002ED43D /* Response.swift in Sources */,
 				B58784262423A22A00819534 /* User.swift in Sources */,
+				B52EAED7244B3C5C0044E479 /* ItemModel.swift in Sources */,
 				2E4C23B6243BBB3C00BECA13 /* StretchyHeaderLayout.swift in Sources */,
 				B5D6C5302424FAB90064B7C0 /* CodeTextFieldView.swift in Sources */,
 				B57FA37124475E8C002ED43D /* NetworkResponse.swift in Sources */,
@@ -941,17 +981,21 @@
 				B5EC13BF242B72CA00BDDF9C /* ResendCodeView.swift in Sources */,
 				B5EC13C2242B860B00BDDF9C /* RegistrationViewController.swift in Sources */,
 				2E4C23C8243DFD9B00BECA13 /* DetailDescriptionView.swift in Sources */,
+				B52EAECD244B22920044E479 /* AllItemViewModel.swift in Sources */,
 				2E0DE83A2438F82900BD0A53 /* TabBarViewController.swift in Sources */,
 				2E4C23C6243DFB6C00BECA13 /* DetailCenterView.swift in Sources */,
 				B5200EE0242499BA005836E6 /* InputView.swift in Sources */,
 				B57FA377244762FF002ED43D /* SendMessageModel.swift in Sources */,
+				B52EAED4244B3BF00044E479 /* ItemListModel.swift in Sources */,
 				B57FA36524475E7C002ED43D /* ParseManager.swift in Sources */,
 				B5200EDC2424972E005836E6 /* LoaderBaseViewController.swift in Sources */,
 				2E4C23CC243E096400BECA13 /* DetailUserInfoView.swift in Sources */,
+				B52EAEDA244B6D550044E479 /* ItemViewModel.swift in Sources */,
 				B58783F12423A05900819534 /* AlypKet.xcdatamodeld in Sources */,
 				B5200EEC2424DB43005836E6 /* ViewModelConfigurable.swift in Sources */,
 				B5ABBDB8243C27A9002353FD /* MessageData.swift in Sources */,
 				B5E4D512243E0C5800E8834F /* SliderImageView.swift in Sources */,
+				B52EAED0244B23110044E479 /* ProcessViewDelegate.swift in Sources */,
 				B5E4D51F243E440A00E8834F /* ChatListTableViewCell.swift in Sources */,
 				2E6FFA542447AA120041D0CE /* FilterViewController.swift in Sources */,
 				2E0DE8422438F8CB00BD0A53 /* MainPageViewController.swift in Sources */,

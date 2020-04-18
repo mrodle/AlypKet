@@ -31,6 +31,7 @@ class AppConstants {
         static let sendCodeMessage = "auth/send/sms"
         static let getLogin = "auth/login"
         static let getRegistration = "auth/register"
+        static let getItemList = "bootcamps"
 
     }
 }
