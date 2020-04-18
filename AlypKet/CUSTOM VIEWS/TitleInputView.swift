@@ -31,7 +31,6 @@ class TitleInputView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .getProximaNovaRegularFont(on: 18)
-        
         return label
     }()
     
