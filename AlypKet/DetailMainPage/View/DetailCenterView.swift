@@ -52,7 +52,7 @@ class DetailCenterView: UIView {
     
     let fromLocationLabel: UILabel = {
         let label = UILabel()
-        label.text = "От: Талдыкорган"
+        label.text = "От: "
         label.font = .getProximaNovaMediumFont(on: 18)
         label.layer.borderWidth = 1
         label.layer.borderColor = #colorLiteral(red: 0.8784313725, green: 0.8980392157, blue: 0.9254901961, alpha: 1)
@@ -67,7 +67,7 @@ class DetailCenterView: UIView {
     
     let toLocationLabel:UILabel = {
         let label = UILabel()
-        label.text = "Доставить до: Талдыкорган"
+        label.text = "Доставить до: "
         label.font = .getProximaNovaMediumFont(on: 18)
         label.layer.borderWidth = 1
         label.layer.borderColor = #colorLiteral(red: 0.8784313725, green: 0.8980392157, blue: 0.9254901961, alpha: 1)
@@ -137,7 +137,7 @@ class DetailCenterView: UIView {
         toLocationLabel.snp.makeConstraints { (make) in
             make.top.equalTo(dividerLineView.snp.bottom).offset(16)
             make.left.equalTo(weightLabel.snp.right).offset(16)
-            make.right.equalTo(-16)
+            make.right.lessThanOrEqualTo(-16)
             make.height.equalTo(36)
         }
         
@@ -146,7 +146,7 @@ class DetailCenterView: UIView {
         fromLocationLabel.snp.makeConstraints { (make) in
             make.top.equalTo(weightLabel.snp.bottom).offset(16)
             make.left.equalTo(16)
-            make.right.equalTo(-16)
+            make.right.lessThanOrEqualTo(-16)
             make.height.equalTo(36)
             make.bottom.equalTo(-16)
         }
@@ -154,8 +154,8 @@ class DetailCenterView: UIView {
     }
     
     func setupData(_ item: ItemModel) -> Void {
-        self.toLocationLabel.text = "   От:. \(item.toLocation)   "
-        self.fromLocationLabel.text = "   Доставить до: \(item.fromLocation)   "
+        self.toLocationLabel.text = "   От: \(item.toLocation.name)   "
+        self.fromLocationLabel.text = "   Доставить до: \(item.fromLocation.name)   "
         self.dateLabel.text = item.createdAt.dateConfiguration()
         self.itemNameLabel.text = item.title
         self.priceLabel.text = "\(item.price) тг"

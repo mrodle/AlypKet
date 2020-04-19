@@ -132,7 +132,7 @@ class BaseCell:UICollectionViewCell{
     func configuration(item: ItemModel) -> Void {
         nameLabel.text = item.title
         priceLabel.text = "\(item.price) тг"
-        cityLabel.text = "\(item.fromLocation) - \(item.toLocation)"
+        cityLabel.text = "\(item.fromLocation.name) - \(item.toLocation.name)"
         timeLabel.text = item.createdAt.dateConfiguration()
     }
 
