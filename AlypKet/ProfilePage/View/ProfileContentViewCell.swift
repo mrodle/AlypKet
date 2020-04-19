@@ -69,7 +69,7 @@ class ProfileContentViewCell: UITableViewCell {
 //            make.top.equalTo(16)
             make.centerY.equalTo(label.snp.centerY)
             make.right.equalTo(-16)
-            make.size.equalTo(CGSize(width: 40, height: 24))
+//            make.size.equalTo(CGSize(width: 40, height: 24))
         }
         
         addSubview(dividerLineView)
@@ -81,8 +81,8 @@ class ProfileContentViewCell: UITableViewCell {
         addSubview(enterImage)
         enterImage.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalTo(-23)
-            make.size.equalTo(CGSize(width: 10, height: 14))
+            make.right.equalTo(-16)
+            make.size.equalTo(CGSize(width: 24, height: 24))
         }
     }
 

@@ -11,9 +11,12 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     
-    lazy var navBar:ProfileNavBar = {
-        let view = ProfileNavBar()
-        view.profileViewController = self
+    lazy var navBar: ProfileNavBar = {
+        let view = ProfileNavBar(title: "Профиль", buttonImage: #imageLiteral(resourceName: "🔹Icon Color"))
+        view.navBarButtonTarget = {
+            self.moveToNextController()
+        }
+        
         return view
     }()
     
@@ -46,8 +49,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(navBar)
         navBar.snp.makeConstraints { (make) in
             make.left.top.right.equalToSuperview()
-            make.height.equalTo(AppConstants.navBarHeight+AppConstants.statusBarHeight)
-            
+            make.height.equalTo(AppConstants.statusBarHeight + AppConstants.navBarHeight)
         }
         
         
@@ -78,10 +80,7 @@ extension ProfileViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = ProfileHeaderView()
-        addSubview(headerView)
-        view.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
+
         return headerView
     }
     
@@ -90,7 +89,7 @@ extension ProfileViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 224
+        return UITableView.automaticDimension
     }
     
     

@@ -29,6 +29,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         setupViews()
         setupNav()
+        setupAction()
         // Do any additional setup after loading the view.
     }
     
@@ -73,6 +74,10 @@ class TabBarViewController: UITabBarController {
         }
     }
     
+    func setupAction() -> Void {
+        addButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+    }
+    
     
 //    MARK: - Tabbar delegate
     
@@ -86,8 +91,8 @@ class TabBarViewController: UITabBarController {
     }
     
     //MARK: - actions
-    @objc func tapQRcode() -> Void {
-
+    @objc func buttonAction() -> Void {
+        self.present(CreatePostViewController(), animated: true, completion: nil)
     }
     
     /*

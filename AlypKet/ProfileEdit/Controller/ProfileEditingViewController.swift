@@ -11,7 +11,7 @@ import UIKit
 
 class ProfileEditingViewController: UIViewController {
     
-    let imageView:UIImageView = {
+    let imageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 55
         image.layer.masksToBounds = true
@@ -63,6 +63,11 @@ class ProfileEditingViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
     
     @objc func handleCancel(){
         self.navigationController?.popViewController(animated: true)

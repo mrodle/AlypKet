@@ -38,6 +38,12 @@ class ProfileHeaderView: UIView {
         
     }()
     
+    let dividerLineView:UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.7725490196, green: 0.8156862745, blue: 0.8705882353, alpha: 0.4)
+        return view
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -65,6 +71,12 @@ class ProfileHeaderView: UIView {
             make.top.equalTo(nameLabel.snp.bottom).offset(2)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(-24)
+        }
+        
+        addSubview(dividerLineView)
+        dividerLineView.snp.makeConstraints { (make) in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(1)
         }
         
     }
