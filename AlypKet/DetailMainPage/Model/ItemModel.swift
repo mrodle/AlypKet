@@ -17,8 +17,8 @@ class ItemModel: Codable {
     var title: String
     var description: String
     var phone: String
-    var fromLocation: String
-    var toLocation: String
+    var fromLocation: City
+    var toLocation: City
     var price: Int
     var date: String
     var user: String
@@ -27,4 +27,9 @@ class ItemModel: Codable {
     var __v: Int
     var id: String
 
+}
+
+class City: Codable {
+    var id: String
+    var name: String
 }
