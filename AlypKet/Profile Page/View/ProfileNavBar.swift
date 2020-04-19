@@ -24,6 +24,7 @@ class ProfileNavBar: UIView {
         button.setImage(#imageLiteral(resourceName: "🔹Icon Color"), for: .normal)
         return button
     }()
+    var profileViewController:ProfileViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,9 +34,7 @@ class ProfileNavBar: UIView {
     }
     
     @objc func handleEditAction(_ sender: UIButton){
-        print("111")
-        //        let vc = ProfileEditingViewController()
-        //        self.navigationController?.pushViewController(vc, animated: true)
+        profileViewController?.moveToNextController()
     }
     
     

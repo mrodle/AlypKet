@@ -1,14 +1,14 @@
 //
-//  PopUpLongPressView.swift
+//  PopUpAdView.swift
 //  AlypKet
 //
-//  Created by Zhanibek Santay on 4/16/20.
+//  Created by Zhanibek Santay on 4/19/20.
 //  Copyright © 2020 Eldor Makkambayev. All rights reserved.
 //
 
 import UIKit
 
-class PopUpLongPressView: NSObject, UITableViewDataSource, UITableViewDelegate {
+class PopUpAdView: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     let tableView: UITableView = {
         let tv = UITableView()
@@ -19,7 +19,8 @@ class PopUpLongPressView: NSObject, UITableViewDataSource, UITableViewDelegate {
         return tv
     }()
     
-    var array = ["Удалить сообщения","Архивировать"]
+    var array = ["Редактировать","Удалить объявление"]
+    
     let blackView = UIView()
     
     override init() {
@@ -78,3 +79,4 @@ class PopUpLongPressView: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
 }
+
