@@ -41,7 +41,7 @@ class BackNavBarView: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = #colorLiteral(red: 0.2, green: 0.2470588235, blue: 0.3215686275, alpha: 1)
         label.font = .getProximaNovaSemiboldFont(on: 18)
         label.textAlignment = .center
         

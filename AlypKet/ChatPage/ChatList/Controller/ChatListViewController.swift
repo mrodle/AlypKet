@@ -36,9 +36,7 @@ class ChatListViewController: UIViewController {
     
     
     @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
-        
         if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
-            
             let touchPoint = longPressGestureRecognizer.location(in: self.view)
             if let index = self.tableView.indexPathForRow(at: touchPoint)  {
                 popUpLongPressView.showSettings(index: index[1])

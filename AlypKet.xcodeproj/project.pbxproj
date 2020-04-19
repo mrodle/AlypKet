@@ -28,6 +28,10 @@
 		2E6FFA85244B364D0041D0CE /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA84244B364D0041D0CE /* ProfileEditingViewController.swift */; };
 		2E6FFA87244B366B0041D0CE /* CenterEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA86244B366B0041D0CE /* CenterEditView.swift */; };
 		2E6FFA8C244B7C490041D0CE /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA8B244B7C490041D0CE /* NotificationViewController.swift */; };
+		2E6FFA8E244C5CBC0041D0CE /* NotificationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA8D244C5CBC0041D0CE /* NotificationsViewCell.swift */; };
+		2E6FFA93244C6C6E0041D0CE /* MyAdvertismentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA92244C6C6E0041D0CE /* MyAdvertismentViewController.swift */; };
+		2E6FFA95244C6D770041D0CE /* MyAdViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA94244C6D770041D0CE /* MyAdViewCell.swift */; };
+		2E6FFA97244C7F490041D0CE /* PopUpAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FFA96244C7F490041D0CE /* PopUpAdView.swift */; };
 		2E8C473D2445C19E00D9E967 /* FavouritePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8C473C2445C19E00D9E967 /* FavouritePageViewController.swift */; };
 		2EBEC1AF243A0E21009D8F7D /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBEC1AE243A0E21009D8F7D /* BaseCell.swift */; };
 		2EBEC1B1243B28FC009D8F7D /* FilterLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBEC1B0243B28FC009D8F7D /* FilterLauncher.swift */; };
@@ -135,6 +139,10 @@
 		2E6FFA84244B364D0041D0CE /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
 		2E6FFA86244B366B0041D0CE /* CenterEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterEditView.swift; sourceTree = "<group>"; };
 		2E6FFA8B244B7C490041D0CE /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		2E6FFA8D244C5CBC0041D0CE /* NotificationsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewCell.swift; sourceTree = "<group>"; };
+		2E6FFA92244C6C6E0041D0CE /* MyAdvertismentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdvertismentViewController.swift; sourceTree = "<group>"; };
+		2E6FFA94244C6D770041D0CE /* MyAdViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdViewCell.swift; sourceTree = "<group>"; };
+		2E6FFA96244C7F490041D0CE /* PopUpAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAdView.swift; sourceTree = "<group>"; };
 		2E8C473C2445C19E00D9E967 /* FavouritePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePageViewController.swift; sourceTree = "<group>"; };
 		2EBEC1AE243A0E21009D8F7D /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		2EBEC1B0243B28FC009D8F7D /* FilterLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterLauncher.swift; sourceTree = "<group>"; };
@@ -382,6 +390,33 @@
 		2E6FFA8A244B79A00041D0CE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2E6FFA8D244C5CBC0041D0CE /* NotificationsViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E6FFA8F244C6BFD0041D0CE /* MyAdvertisement Page */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA91244C6C450041D0CE /* View */,
+				2E6FFA90244C6C400041D0CE /* Controller */,
+			);
+			path = "MyAdvertisement Page";
+			sourceTree = "<group>";
+		};
+		2E6FFA90244C6C400041D0CE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA92244C6C6E0041D0CE /* MyAdvertismentViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2E6FFA91244C6C450041D0CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FFA94244C6D770041D0CE /* MyAdViewCell.swift */,
+				2E6FFA96244C7F490041D0CE /* PopUpAdView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -607,6 +642,7 @@
 		B58783EA2423A05900819534 /* AlypKet */ = {
 			isa = PBXGroup;
 			children = (
+				2E6FFA8F244C6BFD0041D0CE /* MyAdvertisement Page */,
 				2E6FFA88244B798F0041D0CE /* Notification Page */,
 				2E6FFA81244B36240041D0CE /* Profile Edit */,
 				2E6FFA76244B359F0041D0CE /* Profile Page */,
@@ -1030,12 +1066,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E6FFA97244C7F490041D0CE /* PopUpAdView.swift in Sources */,
 				B57FA37424475E8C002ED43D /* EndpointType.swift in Sources */,
 				B57FA37224475E8C002ED43D /* NetworkManager.swift in Sources */,
 				B5EC13BB242B644B00BDDF9C /* PhoneNumberView.swift in Sources */,
 				B58784312423ABF300819534 /* Extension.swift in Sources */,
 				B5200EE82424A91B005836E6 /* HaventAccountView.swift in Sources */,
 				2E6FFA5F244884100041D0CE /* PopUpLongPressView.swift in Sources */,
+				2E6FFA8E244C5CBC0041D0CE /* NotificationsViewCell.swift in Sources */,
 				2EBEC1B1243B28FC009D8F7D /* FilterLauncher.swift in Sources */,
 				B57FA37024475E8C002ED43D /* Parser.swift in Sources */,
 				B5200EEA2424DB0E005836E6 /* SignInViewModel.swift in Sources */,
@@ -1089,6 +1127,7 @@
 				B5200EDC2424972E005836E6 /* LoaderBaseViewController.swift in Sources */,
 				2E4C23CC243E096400BECA13 /* DetailUserInfoView.swift in Sources */,
 				B52EAEDA244B6D550044E479 /* ItemViewModel.swift in Sources */,
+				2E6FFA93244C6C6E0041D0CE /* MyAdvertismentViewController.swift in Sources */,
 				B58783F12423A05900819534 /* AlypKet.xcdatamodeld in Sources */,
 				B5200EEC2424DB43005836E6 /* ViewModelConfigurable.swift in Sources */,
 				B5ABBDB8243C27A9002353FD /* MessageData.swift in Sources */,
@@ -1101,6 +1140,7 @@
 				B5ABBDB3243C2771002353FD /* ChatController.swift in Sources */,
 				2E6FFA592447BD630041D0CE /* RangeSlider.swift in Sources */,
 				2E8C473D2445C19E00D9E967 /* FavouritePageViewController.swift in Sources */,
+				2E6FFA95244C6D770041D0CE /* MyAdViewCell.swift in Sources */,
 				2E0DE8442438FEC600BD0A53 /* MenuBar.swift in Sources */,
 				B57FA36F24475E8C002ED43D /* Result.swift in Sources */,
 				2E6FFA7A244B35C60041D0CE /* ProfileViewController.swift in Sources */,

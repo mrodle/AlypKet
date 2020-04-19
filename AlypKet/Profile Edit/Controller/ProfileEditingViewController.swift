@@ -11,7 +11,6 @@ import UIKit
 
 class ProfileEditingViewController: UIViewController {
     
-    
     let imageView:UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 55

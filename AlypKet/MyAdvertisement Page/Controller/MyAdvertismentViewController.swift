@@ -1,22 +1,18 @@
 //
-//  NotificationViewController.swift
+//  MyAdvertismentViewController.swift
 //  AlypKet
 //
-//  Created by Zhanibek Santay on 4/18/20.
+//  Created by Zhanibek Santay on 4/19/20.
 //  Copyright © 2020 Eldor Makkambayev. All rights reserved.
 //
 
 import UIKit
 
-class NotificationViewController: UIViewController {
+class MyAdvertismentViewController: UIViewController {
     
-    
-    lazy var navBarNotify = BackNavBarView(title: "Уведомления")
-    
-    let titleArray = ["Ведутся технические работы, обещаем что к концу дня все будет решено","На этой неделе вашу заявку смотрели 3 человека"]
+    lazy var navBarNotify = BackNavBarView(title: "Мои объявления")
     
     lazy var tableView = UITableView()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +27,7 @@ class NotificationViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .white
-        tableView.register(NotificationsViewCell.self, forCellReuseIdentifier: "notifyCell")
+        tableView.register(MyAdViewCell.self, forCellReuseIdentifier: "advertismentCell")
     }
     
     func setupViews() -> Void {
@@ -55,22 +51,23 @@ class NotificationViewController: UIViewController {
     
 }
 
-extension  NotificationViewController : UITableViewDelegate,UITableViewDataSource {
+extension  MyAdvertismentViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "notifyCell", for: indexPath) as! NotificationsViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "advertismentCell", for: indexPath) as! MyAdViewCell
+        cell.popupButton.tag = indexPath.row
         cell.selectionStyle = .none
-        cell.notifyContentLabel.text = titleArray[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 124
     }
     
     
 }
+
