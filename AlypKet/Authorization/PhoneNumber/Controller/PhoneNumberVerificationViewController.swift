@@ -130,7 +130,9 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
     private func setupAction() -> Void {
         phoneNumberView.getCodeButton.addTarget(self, action: #selector(getCodeAction), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(backToPhoneNumber), for: .touchUpInside)
-        
+        verificationView.codeTextFields.sendagainView.resendClousure = {
+            self.sendAgainCodeMessage()
+        }
         verificationView.codeTextFields.endedTypeCode = {
             let codeView = self.verificationView.codeTextFields
             let typedCode = codeView.firstInputTextField.text! + codeView.secondInputTextField.text! + codeView.thirdInputTextField.text! + codeView.fourthInputTextField.text!
@@ -146,6 +148,22 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
     
     //    MARK: - Parse manager
     
+    private func sendAgainCodeMessage() -> Void {
+        phone = Int(self.phoneNumberView.phoneTextField.viewModel.phone)!
+        let params: Parameters = ["phone": phone]
+        ParseManager.shared.postRequest(url: AppConstants.API.sendCodeMessage, parameters: params, success: { (result:
+            SendMessageModel) in
+            if let data = result.data {
+                self.code = "\(String(describing: data.code!))"
+            }
+
+            self.verificationView.codeTextFields.sendagainView.startSecondomer()
+            
+        }) { (error) in
+            self.showErrorMessage(error)
+        }
+    }
+
     private func sendCodeMessage() -> Void {
         phone = Int(self.phoneNumberView.phoneTextField.viewModel.phone)!
         let params: Parameters = ["phone": phone]

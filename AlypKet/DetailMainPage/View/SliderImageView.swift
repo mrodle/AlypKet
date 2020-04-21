@@ -8,17 +8,17 @@
 
 import UIKit
 import ImageSlideshow
+import Kingfisher
 
 class SliderImageView: UIView {
 
     //MARK: - Properties
     
     var presentBlock: ((UIViewController) -> ())?
-    
-    var sliders = [#imageLiteral(resourceName: "Rect"),#imageLiteral(resourceName: "Rect"),#imageLiteral(resourceName: "Rect"),#imageLiteral(resourceName: "Rect")] {
+    var imageUrl: String?
+    var sliders = [UIImage]() {
         didSet {
             pageControl.numberOfPages = self.sliders.count
-            collectionView.reloadData()
         }
     }
     
@@ -77,6 +77,30 @@ class SliderImageView: UIView {
 
     }
     
+    func setupData(_ item: ItemModel) -> Void {
+        self.sliders.removeAll()
+        self.imageUrl = item.photo
+        collectionView.reloadData()
+    }
+    
+    func downloadImage(`with` urlString : String){
+        guard let url = URL.init(string: urlString) else {
+            return
+        }
+        let resource = ImageResource(downloadURL: url)
+        
+        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+            switch result {
+            case .success(let value):
+                print("Image: \(value.image). Got from: \(value.cacheType)")
+                self.sliders.append(value.image)
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+        
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -85,13 +109,16 @@ class SliderImageView: UIView {
 
 extension SliderImageView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sliders.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SliderCollectionViewCell.self), for:  indexPath) as! SliderCollectionViewCell
-        cell.imageView.image = sliders[indexPath.item]
-        
+        if let url = imageUrl {
+            cell.imageView.kf.setImage(with: url.serverUrlString.url)
+            downloadImage(with: url.serverUrlString)
+        }
+
         return cell
     }
     

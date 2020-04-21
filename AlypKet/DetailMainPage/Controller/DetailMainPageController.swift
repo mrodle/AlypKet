@@ -18,6 +18,14 @@ class DetailMainPageController: LoaderBaseViewController {
         
         return view
     }()
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateList), for: .valueChanged)
+        refresh.tintColor = .mainColor
+        
+        return refresh
+    }()
 
     lazy var navBar: BackNavBarView = {
         let view = BackNavBarView(title: "", rightButtonImage: #imageLiteral(resourceName: "star"))
@@ -110,7 +118,9 @@ class DetailMainPageController: LoaderBaseViewController {
     private func setupView() -> Void{
         view.backgroundColor = .white
         scrollView.delegate = self
+        scrollView.refreshControl = refreshControl
         
+        contentView.isHidden = true
         view.addSubview(navBar)
         navBar.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
@@ -175,23 +185,31 @@ class DetailMainPageController: LoaderBaseViewController {
     }
     
     private func setupData(_ item: ItemModel?) -> Void {
+        contentView.isHidden = false
         guard let item = item else { return }
+        self.sliderImageView.setupData(item)
         self.detailCenterView.setupData(item)
         self.detailDescriptionView.setupData(item)
+        self.detailUserInfoView.setupData(item)
     }
     
     private func getData() -> Void {
         viewModel.getItem(id: id)
+    }
+    
+    @objc func updateList() -> Void {
+        getData()
     }
 }
 
 extension DetailMainPageController: ProcessViewDelegate {
     func updateUI() {
         self.setupData(viewModel.item)
+        self.refreshControl.endRefreshing()
     }
     
     func endRefreshing() {
-        
+        self.refreshControl.endRefreshing()
     }
     
     

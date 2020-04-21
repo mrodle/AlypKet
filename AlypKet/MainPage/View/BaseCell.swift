@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class BaseCell:UICollectionViewCell{
     
     let imageView: UIImageView = {
@@ -134,6 +134,9 @@ class BaseCell:UICollectionViewCell{
         priceLabel.text = "\(item.price) тг"
         cityLabel.text = "\(item.fromLocation.name) - \(item.toLocation.name)"
         timeLabel.text = item.createdAt.dateConfiguration()
+        if let image = item.photo {
+            imageView.kf.setImage(with: image.serverUrlString.url)
+        }
     }
 
     

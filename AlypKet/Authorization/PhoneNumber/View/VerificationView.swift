@@ -19,8 +19,6 @@ class VerificationView: UIView {
         return label
     }()
     
-    
-    
     lazy var codeTextFields = CodeTextFieldView(phoneNumber: "")
 
     //    MARK: - Initialization

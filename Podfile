@@ -8,6 +8,6 @@ target 'AlypKet' do
   pod 'SnapKit'
   pod 'IQKeyboardManager'
   pod 'ImageSlideshow', '~> 1.8.1'
-
+  pod 'Kingfisher'
 
 end

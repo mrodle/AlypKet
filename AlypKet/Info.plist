@@ -28,6 +28,10 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>«AlypKet» требует доступ к вашей камере, чтобы вы могли добавлять фотографии для публикации в вашей публикации</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>«AlypKet» должен получить доступ к вашей камере, чтобы вы могли загружать изображения. Ваши изображения не будут переданы без вашего разрешения.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

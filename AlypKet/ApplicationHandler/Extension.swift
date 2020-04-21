@@ -140,7 +140,7 @@ extension UITableViewHeaderFooterView {
 
 extension String {
     var serverUrlString: String {
-        return "http://194.4.58.92/" + self
+        return "https://gidirect.app/node/" + self
     }
     
     var url: URL {

@@ -12,16 +12,18 @@ class ItemDataModel: Codable {
 }
 
 class ItemModel: Codable {
-    var photo: String
+    var photo: String?
     var _id: String
     var title: String
     var description: String
     var phone: String
     var fromLocation: City
     var toLocation: City
+    var mass: Int
     var price: Int
     var date: String
     var user: String
+    var userModal: User
     var createdAt: String
     var slug: String
     var __v: Int

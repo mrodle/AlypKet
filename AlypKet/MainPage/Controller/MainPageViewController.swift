@@ -33,9 +33,7 @@ class MainPageViewController: LoaderBaseViewController {
         return refresh
     }()
 
-    
-    let imageArray =  [#imageLiteral(resourceName: "Rectangle 274"), #imageLiteral(resourceName: "Rectangle 275"), #imageLiteral(resourceName: "Rectangle 275-2"), #imageLiteral(resourceName: "Rectangle 275-3")]
-    
+        
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -83,14 +81,14 @@ class MainPageViewController: LoaderBaseViewController {
         navigationItem.leftBarButtonItems = [locationBarButtonItem,locationTitleName]
     }
     
-    @objc func handleSearch(){
-        print("print")
-    }
-    
     func handleFilterAction(){
         let vc = UINavigationController(rootViewController: FilterViewController())
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
+    }
+
+    @objc func handleSearch(){
+        print("print")
     }
     
     @objc func handleCity(){
@@ -121,8 +119,8 @@ extension MainPageViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseCell.cellIdentifier(), for: indexPath) as! BaseCell
-        cell.imageView.image = #imageLiteral(resourceName: "Rectangle 275-2")
         cell.configuration(item: viewModel.itemList[indexPath.row])
+        
         return cell
     }
     

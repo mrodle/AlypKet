@@ -11,7 +11,7 @@ import UIKit
 class ResendCodeView: UIView {
     //MARK:- Preasire
     var resendClousure: (() -> ())?
-    var sec = 15
+    var sec = 59
     var timer: Timer?
     
     lazy var resendButton: UIButton = {
@@ -68,7 +68,7 @@ class ResendCodeView: UIView {
     func stopSecondomer() -> Void {
         timer?.invalidate()
         timer = nil
-        sec = 15
+        sec = 59
     }
     
     private func setupAction() -> Void {
@@ -79,7 +79,7 @@ class ResendCodeView: UIView {
     @objc func resendAction() -> Void {
         resendButton.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         resendButton.titleLabel?.font = .systemFont(ofSize: 13)
-        sec = 15
+        sec = 59
         sendagainLabel.text = sec/10 == 0 ? "через 0:0\(sec)" : "через 0:\(sec)"
         startSecondomer()
         resendClousure?()
