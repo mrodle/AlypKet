@@ -36,6 +36,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
     }
     
@@ -92,18 +93,13 @@ class TabBarViewController: UITabBarController {
     
     //MARK: - actions
     @objc func buttonAction() -> Void {
-        self.present(CreatePostViewController(), animated: true, completion: nil)
+        let vc = CreatePostViewController()
+        if #available(iOS 13.0, *) {
+            vc.isModalInPresentation = true
+        } else {
+            // Fallback on earlier versions
+        }
+        self.present(vc, animated: true, completion: nil)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 

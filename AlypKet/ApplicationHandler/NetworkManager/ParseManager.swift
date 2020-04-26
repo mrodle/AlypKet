@@ -48,6 +48,20 @@ class ParseManager {
         }
     }
     
+    func putRequest<T: Decodable>(url: String, parameters: Parameters? = nil, token: String? = UserManager.getCurrentToken(), header: HTTPHeaders = [:], success: @escaping (T) -> (), error: @escaping (String) -> ()) {
+        let endpoint = Endpoints.put(url: url, parameters: parameters, token: token, header: header)
+        self.networkManager.request(endpoint) { (result: Result<T>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let errorMessage):
+                    error(errorMessage)
+                case .success(let value):
+                    success(value)
+                }
+            }
+        }
+    }
+
     func getRequest<T: Decodable>(url: String, parameters: Parameters? = nil, token: String? = nil,
                                   success: @escaping (T) -> (), error: @escaping (String) -> ()) {
         let endpoint = Endpoints.get(url: url, parameters: parameters, token: token)

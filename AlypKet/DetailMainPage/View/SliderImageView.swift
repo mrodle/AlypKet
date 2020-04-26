@@ -15,12 +15,8 @@ class SliderImageView: UIView {
     //MARK: - Properties
     
     var presentBlock: ((UIViewController) -> ())?
-    var imageUrl: String?
-    var sliders = [UIImage]() {
-        didSet {
-            pageControl.numberOfPages = self.sliders.count
-        }
-    }
+    var imageUrlList: [String] = []
+    var sliders = [UIImage]()
     
     var slideshowTransitioningDelegate: ZoomAnimatedTransitioningDelegate? = nil
 
@@ -45,7 +41,6 @@ class SliderImageView: UIView {
             pageControl.currentPage = 0
             pageControl.currentPageIndicatorTintColor = .mainColor
             pageControl.pageIndicatorTintColor = #colorLiteral(red: 0.7803921569, green: 0.8156862745, blue: 0.8666666667, alpha: 1)
-            pageControl.numberOfPages = sliders.count
             pageControl.backgroundColor = #colorLiteral(red: 0.09803921569, green: 0.007843137255, blue: 0.1333333333, alpha: 0.141982582)
             pageControl.layer.cornerRadius = 10
             pageControl.layer.masksToBounds = true
@@ -57,12 +52,11 @@ class SliderImageView: UIView {
     //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        backgroundColor = #colorLiteral(red: 0.965, green: 0.976, blue: 1, alpha: 1)
-        setupView()
     }
 
     //MARK: - Setup functions
     private func setupView() -> Void {
+        backgroundColor = #colorLiteral(red: 0.965, green: 0.976, blue: 1, alpha: 1)
         addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -72,15 +66,31 @@ class SliderImageView: UIView {
         pageControl.snp.makeConstraints { (make) in
             make.bottom.equalTo(-8)
             make.centerX.equalToSuperview()
-            make.width.equalTo((14*sliders.count)+20)
+            make.width.equalTo((14*imageUrlList.count)+20)
         }
 
     }
     
     func setupData(_ item: ItemModel) -> Void {
         self.sliders.removeAll()
-        self.imageUrl = item.photo
+        if let photoList = item.photo {
+            for photo in photoList {
+                if photo == "no-photo.jpg" {
+                    if photoList.count == 1 {
+                        self.imageUrlList.append(photo)
+                    }
+                } else {
+                    self.imageUrlList.append(photo)
+                }
+            }
+        }
+        for imageUrl in imageUrlList {
+            downloadImage(with: imageUrl.serverUrlString)
+        }
+        pageControl.isHidden = imageUrlList.count <= 1
+        pageControl.numberOfPages = imageUrlList.count
         collectionView.reloadData()
+        setupView()
     }
     
     func downloadImage(`with` urlString : String){
@@ -109,16 +119,17 @@ class SliderImageView: UIView {
 
 extension SliderImageView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return imageUrlList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SliderCollectionViewCell.self), for:  indexPath) as! SliderCollectionViewCell
-        if let url = imageUrl {
-            cell.imageView.kf.setImage(with: url.serverUrlString.url)
-            downloadImage(with: url.serverUrlString)
+        if imageUrlList[indexPath.row] == "no-photo.jpg" {
+            cell.imageView.image = #imageLiteral(resourceName: "no_image")
+        } else {
+            cell.imageView.kf.setImage(with: imageUrlList[indexPath.row].serverUrlString.url)
         }
-
+        
         return cell
     }
     
@@ -137,7 +148,11 @@ extension SliderImageView: UICollectionViewDelegate, UICollectionViewDataSource,
                 self?.slideshowTransitioningDelegate?.referenceImageView = cell.imageView
             }
         }
-        presentBlock?(fullScreenController)
+        if let cell = collectionView.cellForItem(at: indexPath) as? SliderCollectionViewCell{
+            if cell.imageView.image != #imageLiteral(resourceName: "no_image") {
+                presentBlock?(fullScreenController)
+            }
+        }
 //        present(fullScreenController, animated: true, completion: nil)
 
     }

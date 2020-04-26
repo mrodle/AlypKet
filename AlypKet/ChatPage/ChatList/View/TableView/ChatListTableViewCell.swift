@@ -21,7 +21,8 @@ class ChatListTableViewCell: UITableViewCell {
     
     lazy var userImage: UIImageView = {
         let view = UIImageView()
-        view.image = #imageLiteral(resourceName: "Rectangle 275-2")
+        view.image = #imageLiteral(resourceName: "no_image")
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 20
         view.layer.masksToBounds = true
         

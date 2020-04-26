@@ -32,7 +32,12 @@ class InputView: UIView {
     var placeholder: String
     private let icon: UIImage?
     var iconAction: (() -> ())?
-
+    
+    lazy var pickerView: UIPickerView = {
+        let view = UIPickerView()
+        
+        return view
+    }()
     
     lazy var textField: UITextField = {
         let tf = UITextField()
@@ -47,6 +52,10 @@ class InputView: UIView {
                                                         NSAttributedString.Key.foregroundColor:  #colorLiteral(red: 0.2, green: 0.247, blue: 0.322, alpha: 0.55),
                                                         NSAttributedString.Key.font: UIFont.getProximaNovaRegularFont(on: 18)
             ])
+        
+        if icon == #imageLiteral(resourceName: "Icon Color-6") {
+            tf.inputView = pickerView
+        }
 
         return tf
     }()
@@ -145,6 +154,5 @@ class InputView: UIView {
     @objc func iconTarget() -> Void {
         iconAction?()
     }
-
-
 }
+

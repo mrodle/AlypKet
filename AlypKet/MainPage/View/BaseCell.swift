@@ -10,6 +10,11 @@ import UIKit
 import Kingfisher
 class BaseCell:UICollectionViewCell{
     
+    var item: ItemModel?
+    var favouriteBool = false
+    var favouriteId: String = ""
+    var favouriteTarget: (() -> ())?
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -53,7 +58,7 @@ class BaseCell:UICollectionViewCell{
         return label
     }()
     
-    let favouriteButton:UIButton = {
+    let favouriteButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "star"), for: .normal)
         button.layer.cornerRadius = 16
@@ -63,7 +68,6 @@ class BaseCell:UICollectionViewCell{
         return button
     }()
     
-    var favouriteBool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,9 +79,7 @@ class BaseCell:UICollectionViewCell{
     }
     
     @objc func saveToFavourite(){
-        favouriteBool = !favouriteBool
-        let image = favouriteBool ? #imageLiteral(resourceName: "yelStars") : #imageLiteral(resourceName: "star")
-        favouriteButton.setImage(image, for: .normal)
+        favouriteBool ? deleteFromFavourite() : getToFavourate()
     }
     
     func setupView(){
@@ -121,21 +123,55 @@ class BaseCell:UICollectionViewCell{
             make.left.right.equalToSuperview()
         }
 
-//        imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.width-30)
-//        nameLabel.frame = CGRect(x: 3, y: frame.width - 30 + 8, width: frame.width, height: 40)
-//        priceLabel.frame = CGRect(x: 3, y: frame.width - 30 + 50, width: frame.width, height: 20)
-//        cityLabel.frame = CGRect(x: 3, y: frame.width - 30 + 70, width: frame.width, height: 20)
-//        timeLabel.frame = CGRect(x: 3, y: frame.width - 30 + 90, width: frame.width, height: 20)
         
     }
 
     func configuration(item: ItemModel) -> Void {
+        self.item = item
+        self.favouriteBool = item.inFavorite
+        self.favouriteId = item.favoriteId
+        let image = item.inFavorite ? #imageLiteral(resourceName: "yelStars") : #imageLiteral(resourceName: "star")
+        self.favouriteButton.setImage(image, for: .normal)
         nameLabel.text = item.title
         priceLabel.text = "\(item.price) тг"
         cityLabel.text = "\(item.fromLocation.name) - \(item.toLocation.name)"
         timeLabel.text = item.createdAt.dateConfiguration()
-        if let image = item.photo {
-            imageView.kf.setImage(with: image.serverUrlString.url)
+        if let photoList = item.photo {
+            if !photoList.isEmpty {
+                if let image = photoList.first {
+                    if image == "no-photo.jpg" {
+                        imageView.image = #imageLiteral(resourceName: "no_image")
+                    } else {
+                        imageView.kf.setImage(with: image.serverUrlString.url)
+                    }
+                } else {
+                    imageView.image = #imageLiteral(resourceName: "no_image")
+                }
+            }
+        }
+    }
+    
+    func getToFavourate() -> Void {
+        ParseManager.shared.postRequest(url: AppConstants.API.getToFavourite, parameters: ["bootcampId": item!._id], success: { (result: FavouriteDataModel) in
+            self.favouriteId = result.data!._id
+            self.favouriteBool.toggle()
+            self.favouriteButton.setImage(#imageLiteral(resourceName: "yelStars"), for: .normal)
+        }) { (error) in
+            
+        }
+    }
+    
+    func deleteFromFavourite() -> Void {
+        ParseManager.shared.deleteRequest(url: AppConstants.API.getToFavourite+"/\(favouriteId)", success: { (result: DeleteFavouriteModel) in
+            self.favouriteTarget?()
+            self.favouriteBool.toggle()
+            self.favouriteButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
+        }) { (error) in
+            if error == "The data couldn’t be read because it is missing." {
+                self.favouriteTarget?()
+                self.favouriteBool.toggle()
+                self.favouriteButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
+            }
         }
     }
 

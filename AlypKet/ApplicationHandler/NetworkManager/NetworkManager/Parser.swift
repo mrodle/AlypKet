@@ -62,7 +62,7 @@ public class DefaultParserImpl: Parser {
         let decoder = JSONDecoder()
         do {
             let result = try decoder.decode(T.self, from: data)
-            if response.statusCode == 200 {
+            if response.statusCode == 200 || response.statusCode == 201 {
                 return .success(result)
             } else {
                 if let response = try? decoder.decode(ErrorModel.self, from: data) {

@@ -22,7 +22,8 @@ class AppConstants {
     class API {
 
         //        MARK: - Base Url
-
+        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOTk1MmIyNzNlMmYzNzVhYzljOTJlNCIsImlhdCI6MTU4NzQwMjc4OSwiZXhwIjoxNTg5OTk0Nzg5fQ.kCL348zD7I0SOJKF4aMuiLO5--NvyskBMjKDYeGhpQQ"
+        
         static let baseUrl = "https://gidirect.app/node/api/v1/"
 
 
@@ -32,6 +33,9 @@ class AppConstants {
         static let getLogin = "auth/login"
         static let getRegistration = "auth/register"
         static let getItemList = "bootcamps"
-
+        static let getEditUser = "users"
+        static let createItem = "bootcamps"
+        static let getCityList = "cities"
+        static let getToFavourite = "favorites"
     }
 }

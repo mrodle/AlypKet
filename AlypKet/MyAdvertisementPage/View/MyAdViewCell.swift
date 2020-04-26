@@ -10,25 +10,29 @@ import UIKit
 
 class MyAdViewCell: UITableViewCell {
     
-    let cardView:UIView = {
+    var item: ItemModel?
+    
+    let cardView: UIView = {
         let view = UIView()
         return view
     }()
     
-    let imageAd:UIImageView = {
+    let imageAd: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 10
         image.image = #imageLiteral(resourceName: "Rectangle 275")
+        image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = true
         return image
     }()
     
     let adContentLabel:UILabel  = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.font = .getProximaNovaMediumFont(on: 16)
         label.text = "Корзина с белыми клубками для бабушки"
         label.textColor = #colorLiteral(red: 0.2470588235, green: 0.2, blue: 0.337254902, alpha: 1)
+        
         return label
     }()
     
@@ -50,35 +54,23 @@ class MyAdViewCell: UITableViewCell {
     }()
     
     
-    let popUpView:PopUpLongPressView = {
+    let popUpView: PopUpLongPressView = {
          let popUpLongPressView = PopUpLongPressView()
         return popUpLongPressView
       }()
     
-    lazy var popupButton:UIButton = {
-        let button = UIButton()
-        let origImage = #imageLiteral(resourceName: "more_vert")
-        if #available(iOS 13.0, *) {
-            let tintedImage = origImage.withTintColor(UIColor.gray)
-            button.setImage(tintedImage, for: .normal)
-        }
-        button.addTarget(self, action: #selector(handlePopupView(sender:)), for: .touchUpInside)
-        return button
-    }()
+//    MARK:  - Initialization
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
     
-    @objc func handlePopupView(sender: UIButton){
-        popUpView.showSettings(index: sender.tag)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+    
+//    MARK: - Setup functions
     
     func setupViews() -> Void{
         addSubview(imageAd)
@@ -95,18 +87,11 @@ class MyAdViewCell: UITableViewCell {
             make.left.equalTo(imageAd.snp.right).offset(16)
             make.bottom.equalTo(-12)
         }
-        
-        cardView.addSubview(popupButton)
-        popupButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.right.equalToSuperview()
-            make.size.equalTo(CGSize(width: 20, height: 20))
-        }
-        
+                
         cardView.addSubview(adPriceLabel)
         adPriceLabel.snp.makeConstraints { (make) in
             make.top.equalTo(4)
-            make.right.equalTo(popupButton.snp.left).offset(-4)
+            make.right.equalTo(-24)
             make.left.equalToSuperview()
         }
         
@@ -123,4 +108,30 @@ class MyAdViewCell: UITableViewCell {
             make.left.equalToSuperview()
         }
     }
+    
+    func configuration(item: ItemModel) -> Void {
+        self.item = item
+        adContentLabel.text = item.title
+        adPriceLabel.text = "\(item.price) тг"
+        adDateLabel.text = item.createdAt.dateConfiguration()
+        if let photoList = item.photo {
+            if !photoList.isEmpty {
+                if let image = photoList.first {
+                    if image == "no-photo.jpg" {
+                        imageAd.image = #imageLiteral(resourceName: "no_image")
+                    } else {
+                        imageAd.kf.setImage(with: image.serverUrlString.url)
+                    }
+                } else {
+                    imageAd.image = #imageLiteral(resourceName: "no_image")
+                }
+            }
+        }
+    }
+//    MARK: - Onjc functions
+    
+    @objc func handlePopupView(sender: UIButton){
+        popUpView.showSettings(index: sender.tag)
+    }
+    
 }

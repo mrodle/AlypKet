@@ -53,6 +53,12 @@
 		B52EAED7244B3C5C0044E479 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAED6244B3C5C0044E479 /* ItemModel.swift */; };
 		B52EAEDA244B6D550044E479 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAED9244B6D550044E479 /* ItemViewModel.swift */; };
 		B52EAEE1244CCA390044E479 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EAEE0244CCA390044E479 /* CreatePostViewController.swift */; };
+		B552090D2452C98F00A5CEBB /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552090C2452C98F00A5CEBB /* EditProfileViewModel.swift */; };
+		B55209102452EA5C00A5CEBB /* EditUserImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552090F2452EA5C00A5CEBB /* EditUserImageModel.swift */; };
+		B552093924545AAA00A5CEBB /* CitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552093824545AAA00A5CEBB /* CitiesViewModel.swift */; };
+		B552093B24545B3700A5CEBB /* CityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552093A24545B3700A5CEBB /* CityListModel.swift */; };
+		B552093D2454662800A5CEBB /* CreateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552093C2454662800A5CEBB /* CreateItem.swift */; };
+		B552093F2454B26A00A5CEBB /* FavouriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552093E2454B26A00A5CEBB /* FavouriteModel.swift */; };
 		B55DC1A3244CCFDD003E09BB /* AddImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55DC1A2244CCFDD003E09BB /* AddImageSliderView.swift */; };
 		B55DC1A6244CD11C003E09BB /* CreatePostImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55DC1A5244CD11C003E09BB /* CreatePostImageCollectionViewCell.swift */; };
 		B55DC1A8244CD964003E09BB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55DC1A7244CD964003E09BB /* ImagePicker.swift */; };
@@ -170,6 +176,12 @@
 		B52EAED6244B3C5C0044E479 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		B52EAED9244B6D550044E479 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		B52EAEE0244CCA390044E479 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		B552090C2452C98F00A5CEBB /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		B552090F2452EA5C00A5CEBB /* EditUserImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserImageModel.swift; sourceTree = "<group>"; };
+		B552093824545AAA00A5CEBB /* CitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewModel.swift; sourceTree = "<group>"; };
+		B552093A24545B3700A5CEBB /* CityListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListModel.swift; sourceTree = "<group>"; };
+		B552093C2454662800A5CEBB /* CreateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItem.swift; sourceTree = "<group>"; };
+		B552093E2454B26A00A5CEBB /* FavouriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteModel.swift; sourceTree = "<group>"; };
 		B55DC1A2244CCFDD003E09BB /* AddImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageSliderView.swift; sourceTree = "<group>"; };
 		B55DC1A5244CD11C003E09BB /* CreatePostImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B55DC1A7244CD964003E09BB /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -360,6 +372,8 @@
 		2E6FFA81244B36240041D0CE /* ProfileEdit */ = {
 			isa = PBXGroup;
 			children = (
+				B552090E2452EA4E00A5CEBB /* Model */,
+				B552090B2452C97E00A5CEBB /* ViewModel */,
 				2E6FFA83244B363B0041D0CE /* View */,
 				2E6FFA82244B36350041D0CE /* Controller */,
 			);
@@ -556,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				B52EAED3244B3BF00044E479 /* ItemListModel.swift */,
+				B552093E2454B26A00A5CEBB /* FavouriteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -590,6 +605,8 @@
 		B52EAEDD244CC9E50044E479 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B552093A24545B3700A5CEBB /* CityListModel.swift */,
+				B552093C2454662800A5CEBB /* CreateItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -597,6 +614,7 @@
 		B52EAEDE244CC9E70044E479 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B552093824545AAA00A5CEBB /* CitiesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -610,6 +628,22 @@
 				B55DC1AC244CE0DF003E09BB /* CreatePostDescriptionInputView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B552090B2452C97E00A5CEBB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B552090C2452C98F00A5CEBB /* EditProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B552090E2452EA4E00A5CEBB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B552090F2452EA5C00A5CEBB /* EditUserImageModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B55DC1A4244CD0F8003E09BB /* CollectionView */ = {
@@ -1141,6 +1175,7 @@
 				2E6FFA5F244884100041D0CE /* PopUpLongPressView.swift in Sources */,
 				2E6FFA8E244C5CBC0041D0CE /* NotificationsViewCell.swift in Sources */,
 				2EBEC1B1243B28FC009D8F7D /* FilterLauncher.swift in Sources */,
+				B552093F2454B26A00A5CEBB /* FavouriteModel.swift in Sources */,
 				B57FA37024475E8C002ED43D /* Parser.swift in Sources */,
 				B55DC1AD244CE0DF003E09BB /* CreatePostDescriptionInputView.swift in Sources */,
 				B5200EEA2424DB0E005836E6 /* SignInViewModel.swift in Sources */,
@@ -1164,6 +1199,7 @@
 				B5200EDB2424972E005836E6 /* ScrollViewController.swift in Sources */,
 				2EBEC1AF243A0E21009D8F7D /* BaseCell.swift in Sources */,
 				B587842A2423A49700819534 /* AppCenter.swift in Sources */,
+				B552093924545AAA00A5CEBB /* CitiesViewModel.swift in Sources */,
 				B5ABBDBC243C2AF7002353FD /* MessageCell.swift in Sources */,
 				B57FA3792447646D002ED43D /* AuthModel.swift in Sources */,
 				2E6FFA8C244B7C490041D0CE /* NotificationViewController.swift in Sources */,
@@ -1172,10 +1208,13 @@
 				B58399ED243CCA2700E98A4C /* MessageInputView.swift in Sources */,
 				B58399E8243CAAF000E98A4C /* ChatListViewController.swift in Sources */,
 				B5E4D515243E0C8B00E8834F /* SliderCollectionViewCell.swift in Sources */,
+				B552093D2454662800A5CEBB /* CreateItem.swift in Sources */,
 				2E6FFA572447ACF70041D0CE /* TopFilterView.swift in Sources */,
 				B57FA36E24475E8C002ED43D /* Response.swift in Sources */,
 				B58784262423A22A00819534 /* User.swift in Sources */,
+				B552093B24545B3700A5CEBB /* CityListModel.swift in Sources */,
 				B52EAED7244B3C5C0044E479 /* ItemModel.swift in Sources */,
+				B55209102452EA5C00A5CEBB /* EditUserImageModel.swift in Sources */,
 				2E4C23B6243BBB3C00BECA13 /* StretchyHeaderLayout.swift in Sources */,
 				B5D6C5302424FAB90064B7C0 /* CodeTextFieldView.swift in Sources */,
 				B55DC1A8244CD964003E09BB /* ImagePicker.swift in Sources */,
@@ -1195,6 +1234,7 @@
 				B5200EE0242499BA005836E6 /* InputView.swift in Sources */,
 				B57FA377244762FF002ED43D /* SendMessageModel.swift in Sources */,
 				B52EAED4244B3BF00044E479 /* ItemListModel.swift in Sources */,
+				B552090D2452C98F00A5CEBB /* EditProfileViewModel.swift in Sources */,
 				B57FA36524475E7C002ED43D /* ParseManager.swift in Sources */,
 				B5200EDC2424972E005836E6 /* LoaderBaseViewController.swift in Sources */,
 				2E4C23CC243E096400BECA13 /* DetailUserInfoView.swift in Sources */,

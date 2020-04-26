@@ -14,9 +14,11 @@ class ProfileHeaderView: UIView {
         let image = UIImageView()
         image.layer.cornerRadius = 55
         image.layer.masksToBounds = true
-        image.image = #imageLiteral(resourceName: "Circle - S")
+        image.image = #imageLiteral(resourceName: "no_image")
         image.layer.borderWidth = 4
         image.layer.borderColor = #colorLiteral(red: 0.6705882353, green: 0.8235294118, blue: 0.9529411765, alpha: 1)
+        image.contentMode = .scaleAspectFill
+
         return image
     }()
     

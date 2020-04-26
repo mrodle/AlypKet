@@ -12,6 +12,10 @@ class DetailMainPageController: LoaderBaseViewController {
     
 //      MARK: - Properties
     var id: String
+    var inFavourite: Bool = false
+    var phoneNumber: String = ""
+    var favouriteId: String = ""
+    
     lazy var viewModel: ItemViewModel = {
         let view = ItemViewModel()
         view.delegate = self
@@ -33,12 +37,15 @@ class DetailMainPageController: LoaderBaseViewController {
         view.goBack = {
             self.navigationController?.popViewController(animated: true)
         }
-        
+        view.rightButtonTarget = {
+            self.inFavourite ? self.deleteFromFavourite() : self.getToFavourate()
+        }
         return view
     }()
     
     let sliderImageView: SliderImageView = {
         let view = SliderImageView()
+        
         return view
     }()
     
@@ -116,6 +123,10 @@ class DetailMainPageController: LoaderBaseViewController {
 //    MARK: - Setup function
     
     private func setupView() -> Void{
+        self.navBar.rightButton.layer.cornerRadius = 12.5
+        self.navBar.rightButton.layer.masksToBounds = true
+        self.navBar.rightButton.backgroundColor = #colorLiteral(red: 0.2, green: 0.2470588235, blue: 0.3215686275, alpha: 0.25)
+
         view.backgroundColor = .white
         scrollView.delegate = self
         scrollView.refreshControl = refreshControl
@@ -182,11 +193,17 @@ class DetailMainPageController: LoaderBaseViewController {
             guard let `self` = self else { return }
             self.present(controller, animated: true, completion: nil)
         }
+        writeButton.addTarget(self, action: #selector(writeAction), for: .touchUpInside)
+        callButton.addTarget(self, action: #selector(callAction), for: .touchUpInside)
     }
     
     private func setupData(_ item: ItemModel?) -> Void {
         contentView.isHidden = false
         guard let item = item else { return }
+        self.inFavourite = item.inFavorite
+        self.favouriteId = item.favoriteId
+        self.phoneNumber = item.phone
+        self.navBar.rightButton.setImage(item.inFavorite ? #imageLiteral(resourceName: "yelStars") : #imageLiteral(resourceName: "star"), for: .normal)
         self.sliderImageView.setupData(item)
         self.detailCenterView.setupData(item)
         self.detailDescriptionView.setupData(item)
@@ -197,9 +214,44 @@ class DetailMainPageController: LoaderBaseViewController {
         viewModel.getItem(id: id)
     }
     
+    func getToFavourate() -> Void {
+        ParseManager.shared.postRequest(url: AppConstants.API.getToFavourite, parameters: ["bootcampId": id], success: { (result: FavouriteDataModel) in
+            self.favouriteId = result.data!._id
+            self.inFavourite.toggle()
+            self.navBar.rightButton.setImage(#imageLiteral(resourceName: "yelStars"), for: .normal)
+        }) { (error) in
+            
+        }
+    }
+    
+    func deleteFromFavourite() -> Void {
+
+        ParseManager.shared.deleteRequest(url: AppConstants.API.getToFavourite+"/\(favouriteId)", success: { (result: DeleteFavouriteModel) in
+            self.inFavourite.toggle()
+            self.navBar.rightButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
+        }) { (error) in
+            if error == "The data couldn’t be read because it is missing." {
+                self.inFavourite.toggle()
+                self.navBar.rightButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
+            }
+        }
+    }
+
     @objc func updateList() -> Void {
         getData()
     }
+    
+    @objc func callAction() -> Void {
+        if let url = URL(string: "tel://+7 \(phoneNumber.suffix(10))") {
+          UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+
+    }
+    
+    @objc func writeAction() -> Void {
+        self.navigationController?.pushViewController(ChatController(), animated: true)
+    }
+
 }
 
 extension DetailMainPageController: ProcessViewDelegate {
@@ -222,10 +274,8 @@ extension DetailMainPageController: UIScrollViewDelegate {
         
         if scrollView.contentOffset.y/140 >= 0.5 {
             navBar.backButton.setImage(#imageLiteral(resourceName: "arrow_back"), for: .normal)
-            navBar.rightButton.isHidden = true
         } else {
             navBar.backButton.setImage(#imageLiteral(resourceName: "arrow_back-1"), for: .normal)
-            navBar.rightButton.isHidden = false
         }
     }
 

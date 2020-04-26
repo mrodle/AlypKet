@@ -9,29 +9,32 @@
 import Foundation
 
 enum Endpoints: EndpointType {
-
+    
     case get(url: String, parameters: Parameters?, token: String?)
     case post(url: String, parameters: Parameters?,  token: String?)
     case delete(url: String, parameters: Parameters?, url_parameters: Parameters?, token: String?)
     case multipartFormData(url: String, parameters: Parameters?, token: String?)
-
+    case put(url: String, parameters: Parameters?,  token: String?, header: HTTPHeaders = [:])
+    
     var baseUrl: URL {
         return URL(string: "\(AppConstants.API.baseUrl)")!
     }
-
+    
     var path: String {
         switch self {
         case .get(let url, _, _):
-                return url
+            return url
         case .post(let url, _, _):
             return url
         case .multipartFormData(let url, _, _):
             return url
         case .delete(let url, _, _, _):
             return url
+        case .put(let url, _, _, _):
+            return url
         }
     }
-
+    
     var httpMethod: HTTPMethod {
         switch self {
         case .post(_, _, _):
@@ -40,11 +43,13 @@ enum Endpoints: EndpointType {
             return .post
         case .delete(_, _, _, _):
             return .del
+        case .put(_, _, _, _):
+            return .put
         default:
             return .get
         }
     }
-
+    
     var task: HTTPTask {
         switch self {
         case .get(_, let parameters, let token):
@@ -54,7 +59,7 @@ enum Endpoints: EndpointType {
                 urlParameters = params
             }
             if let token = token {
-                headers["token"] = token
+                headers["Authorization"] = "Bearer " + token
             }
             return .requestParametersAndHeaders(bodyParameters: nil, urlParameters: urlParameters, additionalHeaders: headers)
             
@@ -65,7 +70,7 @@ enum Endpoints: EndpointType {
                 bodyParameters = params
             }
             if let token = token {
-                headers["token"] = token
+                headers["Authorization"] = "Bearer " + token
             }
             return .requestParametersAndHeaders(bodyParameters: bodyParameters, urlParameters: nil, additionalHeaders: headers)
             
@@ -76,16 +81,26 @@ enum Endpoints: EndpointType {
                 bodyParameters = params
             }
             if let token = token {
-                headers["token"] = token
+                headers["Authorization"] = "Bearer " + token
             }
             return .multipartFormData(bodyParameters: bodyParameters, urlParameters: nil, additionalHeader: headers)
             
         case .delete(_, let parameters, let url_parameters, let token):
             var headers: HTTPHeaders = [:]
             if let token = token {
-                headers["token"] = token
+                headers["Authorization"] = "Bearer " + token
             }
             return .requestParametersAndHeaders(bodyParameters: parameters, urlParameters: url_parameters, additionalHeaders: headers)
+        case .put(_, let parameters, let token, let header):
+            var headers: HTTPHeaders = [:]
+            if let token = token {
+                headers["Authorization"] = "Bearer " + token
+                headers.merge(header) { (current, _) -> String in
+                    current
+                }
+            }
+            return .multipartFormData(bodyParameters: parameters, urlParameters: nil, additionalHeader: headers)
+
         }
     }
 }

@@ -204,4 +204,20 @@ extension String {
         
         return date + createdTime
     }
+    
+    func getIinString() -> String{
+        var string = ""
+        var counter = 0
+        let indexList = [3, 7, 11, 0]
+        for i in 0 ..< 15 {
+            if i != indexList[counter] {
+                string.append(self[self.index(self.startIndex, offsetBy: i - counter)])
+            } else {
+                string.append("-")
+                counter += 1
+            }
+        }
+        
+        return string
+    }
 }

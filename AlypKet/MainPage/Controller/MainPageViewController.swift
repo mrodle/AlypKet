@@ -48,11 +48,15 @@ class MainPageViewController: LoaderBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
         setupNavBarButtons()
         setupViews()
         setupLoaderView()
         showLoader()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.isTranslucent = false
         updateList()
     }
     
@@ -119,7 +123,9 @@ extension MainPageViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseCell.cellIdentifier(), for: indexPath) as! BaseCell
-        cell.configuration(item: viewModel.itemList[indexPath.row])
+        if viewModel.itemList.count > indexPath.row {
+            cell.configuration(item: viewModel.itemList[indexPath.row])
+        }
         
         return cell
     }
@@ -129,9 +135,10 @@ extension MainPageViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        let vc = DetailMainPageController(id: viewModel.itemList[indexPath.item]._id)
-        self.tabBarController!.navigationController?.pushViewController(vc, animated: true)
+        if viewModel.itemList.count > indexPath.item {
+            let vc = DetailMainPageController(id: viewModel.itemList[indexPath.item]._id)
+            self.tabBarController!.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

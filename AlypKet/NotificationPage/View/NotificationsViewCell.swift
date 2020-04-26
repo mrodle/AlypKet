@@ -18,8 +18,10 @@ class NotificationsViewCell: UITableViewCell {
     let imageNotify:UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 20
-        image.image = #imageLiteral(resourceName: "Rectangle 275")
+        image.image = #imageLiteral(resourceName: "no_image")
         image.layer.masksToBounds = true
+        image.contentMode = .scaleAspectFill
+
         return image
     }()
     

@@ -13,7 +13,11 @@ class DetailUserInfoView: UIView {
     
     let imageView:UIImageView = {
         let image = UIImageView()
-        image.image = #imageLiteral(resourceName: "Circle - S")
+        image.image = #imageLiteral(resourceName: "no_image")
+        image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 30
+        image.layer.masksToBounds = true
+        
         return image
     }()
     
@@ -26,7 +30,7 @@ class DetailUserInfoView: UIView {
     }()
     let statusLabel:UILabel = {
         let label = UILabel()
-        label.text = "был(-а) в сети сегодня"
+        label.text = "был(-а) в сети "
         label.font = .getProximaNovaMediumFont(on: 14)
         label.textColor = #colorLiteral(red: 0.09803921569, green: 0.007843137255, blue: 0.1333333333, alpha: 0.3951331967)
         return label
@@ -94,6 +98,15 @@ class DetailUserInfoView: UIView {
     
     func setupData(_ item: ItemModel) -> Void {
         self.nameLabel.text = item.userModal.name
+        if let image = item.userModal.photo {
+            self.imageView.kf.setImage(with: image.serverUrlString.url)
+        } else {
+            self.imageView.image = #imageLiteral(resourceName: "no_image")
+        }
+        
+        if item.userModal.isOnline {
+            self.statusLabel.text = "сейчас в сети"
+        } 
     }
 
     required init?(coder: NSCoder) {

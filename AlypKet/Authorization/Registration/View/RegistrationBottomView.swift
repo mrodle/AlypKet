@@ -17,18 +17,6 @@ class RegistrationBottomView: UIView {
     lazy var emailTextField = TitleInputView(title: "Электронная почта", inputType: .plainText, placeholder: "indushkin@gmail.com")
     
     lazy var regButton = MainButton(title: "Зарегистрироваться")
-    lazy var skipButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Пропустить", for: .normal)
-        button.titleLabel?.font = .getProximaNovaSemiboldFont(on: 18)
-        button.setTitleColor(.mainColor, for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 10
-        button.layer.borderColor = UIColor.mainColor.cgColor
-        button.layer.borderWidth = 2
-        
-        return button
-    }()
     
     
     lazy var errorLabel: UILabel = {
@@ -111,16 +99,6 @@ class RegistrationBottomView: UIView {
             make.top.equalTo(errorLabel.snp.bottom).offset(16)
             make.height.equalTo(48)
         }
-        
-        addSubview(skipButton)
-        skipButton.snp.makeConstraints { (make) in
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-            make.top.equalTo(regButton.snp.bottom).offset(16)
-            make.height.equalTo(48)
-            make.bottom.equalTo(-40)
-        }
-
     }
     
     private func setupAction() -> Void {

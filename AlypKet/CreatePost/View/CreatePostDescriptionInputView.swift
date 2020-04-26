@@ -20,6 +20,7 @@ class CreatePostDescriptionInputView: UIView {
         let view = UITextView()
         view.backgroundColor = #colorLiteral(red: 0.098, green: 0.569, blue: 0.922, alpha: 0.1)
         view.layer.cornerRadius = 10
+        view.font = .getProximaNovaRegularFont(on: 18)
         
         return view
     }()

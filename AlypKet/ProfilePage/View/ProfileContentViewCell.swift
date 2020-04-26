@@ -36,9 +36,10 @@ class ProfileContentViewCell: UITableViewCell {
         return view
     }()
     
-    var index:Int = 0 {
+    var index: Int = 0 {
         didSet{
             if index == 0 {
+                switchContent.isOn = UserManager.getCurrentUser()!.pushIsOn
                 switchContent.isHidden = false
                 enterImage.isHidden = true
             }else{

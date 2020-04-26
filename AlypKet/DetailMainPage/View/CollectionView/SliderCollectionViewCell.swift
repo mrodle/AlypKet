@@ -14,7 +14,7 @@ class SliderCollectionViewCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = true
         
         return image

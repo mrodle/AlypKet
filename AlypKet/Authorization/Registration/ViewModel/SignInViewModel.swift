@@ -54,7 +54,7 @@ class SignInViewModel {
         let iinNumber = String(iin.replacingOccurrences(of: "-", with: ""))
         self.iin = "\(iinNumber)"
 
-        guard iin.count == 15 else { errorMessage = "Неправильный формат ИИН номера"; return true }
+        guard self.iin.count == 12 else { errorMessage = "Неправильный формат ИИН номера"; return true }
         errorMessage = ""
         
         return false

@@ -47,8 +47,9 @@ class MessageCell: UICollectionViewCell {
         let piv = UIImageView()
         piv.layer.cornerRadius = 20
         piv.layer.masksToBounds = true
-        piv.image = #imageLiteral(resourceName: "Rectangle 275")
-        
+        piv.image = #imageLiteral(resourceName: "no_image")
+        piv.contentMode = .scaleAspectFill
+
         return piv
     }()
     
