@@ -73,16 +73,17 @@ class MyAdvertismentViewController: LoaderBaseViewController {
     }
     
     func setupViews() -> Void {
+        view.backgroundColor = .white
+        view.addSubview(navBarNotify)
+        navBarNotify.snp.makeConstraints { (make) in
+            make.left.top.right.equalToSuperview()
+            make.height.equalTo(AppConstants.navBarHeight+AppConstants.statusBarHeight)
+        }
         view.addSubview(emptyLabel)
         emptyLabel.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalToSuperview()
             make.top.equalTo(navBarNotify.snp.bottom)
-        }
-        view.addSubview(navBarNotify)
-        navBarNotify.snp.makeConstraints { (make) in
-            make.left.top.right.equalToSuperview()
-            make.height.equalTo(AppConstants.navBarHeight+AppConstants.statusBarHeight)
         }
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in

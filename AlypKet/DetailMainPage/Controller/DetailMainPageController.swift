@@ -242,7 +242,7 @@ class DetailMainPageController: LoaderBaseViewController {
     }
     
     @objc func callAction() -> Void {
-        if let url = URL(string: "tel://+7 \(phoneNumber.suffix(10))") {
+        if let url = URL(string: "tel://8\(phoneNumber.suffix(10))") {
           UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
 
