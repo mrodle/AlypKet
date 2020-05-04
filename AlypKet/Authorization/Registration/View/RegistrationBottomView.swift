@@ -96,8 +96,9 @@ class RegistrationBottomView: UIView {
         regButton.snp.makeConstraints { (make) in
             make.left.equalTo(16)
             make.right.equalTo(-16)
-            make.top.equalTo(errorLabel.snp.bottom).offset(16)
+            make.top.greaterThanOrEqualTo(errorLabel.snp.bottom).offset(16)
             make.height.equalTo(48)
+            make.bottom.lessThanOrEqualTo(-40)
         }
     }
     

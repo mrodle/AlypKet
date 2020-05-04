@@ -8,11 +8,13 @@
 
 import UIKit
 
+
 class PhoneNumberVerificationViewController: LoaderBaseViewController {
     
     //    MARK: - Properties
     var code: String = ""
     var phone = Int()
+    let array = [""]
     lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "🔹 Icon Color-2"), for: .normal)
@@ -165,6 +167,7 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
     }
 
     private func sendCodeMessage() -> Void {
+
         phone = Int(self.phoneNumberView.phoneTextField.viewModel.phone)!
         let params: Parameters = ["phone": phone]
         ParseManager.shared.postRequest(url: AppConstants.API.sendCodeMessage, parameters: params, success: { (result:
@@ -191,14 +194,12 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
             AppCenter.shared.startWithToken()
             
         }) { (error) in
-//            self.showErrorMessage(error)
-
             if error == "Пользователь не найден!" {
                 let vc = RegistrationViewController()
                 vc.phone = self.phone
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                self.verificationView.codeTextFields.errorLabel.text = error
+                self.showErrorMessage(error)
             }
         }
     }

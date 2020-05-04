@@ -132,6 +132,11 @@ extension ProfileViewController:UITableViewDelegate,UITableViewDataSource {
         }else if indexPath.row == 2{
             let vc = NotificationViewController()
             self.tabBarController!.navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == arrayTitle.count - 1 {
+            self.showAlertWithAction(title: "Выйти", message: "Вы точно хотите выйти") {
+                UserManager.deleteCurrentSession()
+                AppCenter.shared.makeRootController()
+            }
         }
     }
     

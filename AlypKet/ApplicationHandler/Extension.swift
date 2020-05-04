@@ -83,8 +83,8 @@ extension UIViewController {
     func showAlertWithAction(title: String, message: String, completion: @escaping (()->())) -> Void {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
-        let cancelAction = UIAlertAction(title: "Бастарту", style: .cancel, handler: nil)
-        let yesAction = UIAlertAction(title: "Иә", style: .destructive) { (action) in
+        let cancelAction = UIAlertAction(title: "Назад", style: .cancel, handler: nil)
+        let yesAction = UIAlertAction(title: "Да", style: .destructive) { (action) in
             completion()
         }
         
