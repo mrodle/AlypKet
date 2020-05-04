@@ -44,7 +44,7 @@ class AppCenter{
      
     func makeRootController() -> Void {
         if UserManager.getCurrentUser() == nil {
-            let vc = RegistrationViewController().inNavigation()
+            let vc = WelcomeViewController().inNavigation()
             setRootController(vc)
         } else {
             let vc = TabBarViewController().inNavigation()
