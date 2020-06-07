@@ -249,7 +249,7 @@ class DetailMainPageController: LoaderBaseViewController {
     }
     
     @objc func writeAction() -> Void {
-        self.navigationController?.pushViewController(ChatController(), animated: true)
+//        self.navigationController?.pushViewController(ChatController(user: <#T##MessageUser#>), animated: true)
     }
 
 }

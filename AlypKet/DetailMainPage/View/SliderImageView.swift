@@ -13,7 +13,7 @@ import Kingfisher
 class SliderImageView: UIView {
 
     //MARK: - Properties
-    
+    var item: ItemModel?
     var presentBlock: ((UIViewController) -> ())?
     var imageUrlList: [String] = []
     var sliders = [UIImage]()
@@ -72,21 +72,30 @@ class SliderImageView: UIView {
     }
     
     func setupData(_ item: ItemModel) -> Void {
+        self.item = item
         self.sliders.removeAll()
-        if let photoList = item.photo {
-            for photo in photoList {
-                if photo == "no-photo.jpg" {
-                    if photoList.count == 1 {
+        if item.price == 5000 {
+            self.imageUrlList.append("cat")
+            self.imageUrlList.append("cat")
+            self.sliders.append(#imageLiteral(resourceName: "IMAGE 2020-06-07 18:28:15"))
+            self.sliders.append(#imageLiteral(resourceName: "Rectangle 275-3"))
+        } else {
+            if let photoList = item.photo {
+                for photo in photoList {
+                    if photo == "no-photo.jpg" {
+                        if photoList.count == 1 {
+                            self.imageUrlList.append(photo)
+                        }
+                    } else {
                         self.imageUrlList.append(photo)
                     }
-                } else {
-                    self.imageUrlList.append(photo)
                 }
             }
+            for imageUrl in imageUrlList {
+                downloadImage(with: imageUrl.serverUrlString)
+            }
         }
-        for imageUrl in imageUrlList {
-            downloadImage(with: imageUrl.serverUrlString)
-        }
+
         pageControl.isHidden = imageUrlList.count <= 1
         pageControl.numberOfPages = imageUrlList.count
         collectionView.reloadData()
@@ -127,7 +136,11 @@ extension SliderImageView: UICollectionViewDelegate, UICollectionViewDataSource,
         if imageUrlList[indexPath.row] == "no-photo.jpg" {
             cell.imageView.image = #imageLiteral(resourceName: "no_image")
         } else {
-            cell.imageView.kf.setImage(with: imageUrlList[indexPath.row].serverUrlString.url)
+            if item?.price == 5000 {
+                cell.imageView.image = sliders[indexPath.row]
+            } else {
+                cell.imageView.kf.setImage(with: imageUrlList[indexPath.row].serverUrlString.url)
+            }
         }
         
         return cell

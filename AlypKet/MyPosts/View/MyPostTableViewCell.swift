@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyAdViewCell: UITableViewCell {
+class MyPostTableViewCell: UITableViewCell {
     
     var item: ItemModel?
     
@@ -30,7 +30,6 @@ class MyAdViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .getProximaNovaMediumFont(on: 16)
-        label.text = "Корзина с белыми клубками для бабушки"
         label.textColor = #colorLiteral(red: 0.2470588235, green: 0.2, blue: 0.337254902, alpha: 1)
         
         return label
@@ -40,7 +39,6 @@ class MyAdViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .getProximaNovaSemiboldFont(on: 18)
-        label.text = "2,000 тг"
         label.textColor = #colorLiteral(red: 0.2470588235, green: 0.2, blue: 0.337254902, alpha: 1)
         return label
     }()
@@ -48,14 +46,21 @@ class MyAdViewCell: UITableViewCell {
     let adDateLabel:UILabel  = {
         let label = UILabel()
         label.font = .getProximaNovaRegularFont(on: 14)
-        label.text = "От Сегодня в 12:14 до 18 мая"
         label.textColor = #colorLiteral(red: 0.2470588235, green: 0.2, blue: 0.337254902, alpha: 0.3955942623)
         return label
     }()
     
     
+    lazy var moreButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "🔹 Icon Color-7"), for: .normal)
+        
+        return button
+    }()
+    
     let popUpView: PopUpLongPressView = {
-         let popUpLongPressView = PopUpLongPressView()
+        let popUpLongPressView = PopUpLongPressView()
+        
         return popUpLongPressView
       }()
     
@@ -64,7 +69,9 @@ class MyAdViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        setupAction()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -95,6 +102,14 @@ class MyAdViewCell: UITableViewCell {
             make.left.equalToSuperview()
         }
         
+        cardView.addSubview(moreButton)
+        moreButton.snp.makeConstraints { (make) in
+            make.right.equalTo(-16)
+            make.centerY.equalTo(adPriceLabel)
+            make.height.equalTo(16)
+            make.width.equalTo(25)
+        }
+        
         cardView.addSubview(adContentLabel)
         adContentLabel.snp.makeConstraints { (make) in
             make.top.equalTo(adPriceLabel.snp.bottom).offset(8)
@@ -109,6 +124,10 @@ class MyAdViewCell: UITableViewCell {
         }
     }
     
+    private func setupAction() -> Void {
+        moreButton.addTarget(self, action: #selector(handlePopupView), for: .touchUpInside)
+    }
+    
     func configuration(item: ItemModel) -> Void {
         self.item = item
         adContentLabel.text = item.title
@@ -118,12 +137,12 @@ class MyAdViewCell: UITableViewCell {
             if !photoList.isEmpty {
                 if let image = photoList.first {
                     if image == "no-photo.jpg" {
-                        imageAd.image = #imageLiteral(resourceName: "no_image")
+                        imageAd.image = item.price == 5000 ? #imageLiteral(resourceName: "IMAGE 2020-06-07 18:28:15") : #imageLiteral(resourceName: "no_image")
                     } else {
                         imageAd.kf.setImage(with: image.serverUrlString.url)
                     }
                 } else {
-                    imageAd.image = #imageLiteral(resourceName: "no_image")
+                    imageAd.image = item.price == 5000 ? #imageLiteral(resourceName: "IMAGE 2020-06-07 18:28:15") : #imageLiteral(resourceName: "no_image")
                 }
             }
         }
@@ -131,6 +150,7 @@ class MyAdViewCell: UITableViewCell {
 //    MARK: - Onjc functions
     
     @objc func handlePopupView(sender: UIButton){
+        popUpView.array = ["Редактировать", "Удалить объявление"]
         popUpView.showSettings(index: sender.tag)
     }
     

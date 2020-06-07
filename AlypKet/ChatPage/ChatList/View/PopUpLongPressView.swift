@@ -19,6 +19,8 @@ class PopUpLongPressView: NSObject, UITableViewDataSource, UITableViewDelegate {
         return tv
     }()
     
+    var selectClosure: ((Int) -> ())?
+    
     var array = ["Удалить сообщения","Архивировать"]
     let blackView = UIView()
     
@@ -26,6 +28,7 @@ class PopUpLongPressView: NSObject, UITableViewDataSource, UITableViewDelegate {
         super.init()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isScrollEnabled = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.cellIdentifier())
         
     }
@@ -37,7 +40,7 @@ class PopUpLongPressView: NSObject, UITableViewDataSource, UITableViewDelegate {
             window.addSubview(blackView)
             window.addSubview(tableView)
             let height = window.frame.height * 0.62
-            tableView.frame = CGRect(x: Int(Float(window.frame.width) - 250), y: index * 60 + 130, width: 188, height: 92)
+            tableView.frame = CGRect(x: Int(Float(window.frame.width) - 200), y: index * 124 + 100, width: 188, height: 90)
             blackView.frame = window.frame
             blackView.alpha = 1
         }
@@ -63,18 +66,16 @@ class PopUpLongPressView: NSObject, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.cellIdentifier(), for: indexPath)
         cell.textLabel?.text = array[indexPath.row]
         cell.textLabel?.textAlignment = .center
-        cell.textLabel?.font = .getProximaNovaMediumFont(on: 16)
+        cell.textLabel?.font = .getProximaNovaMediumFont(on: 14)
         cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row,": index")
+        self.selectClosure?(indexPath.row)
+        self.dismissFunc()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
     
 }

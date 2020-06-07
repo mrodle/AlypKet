@@ -8,16 +8,11 @@
 
 import UIKit
 
-class MyAdvertismentViewController: LoaderBaseViewController {
+class MyPostsViewController: LoaderBaseViewController {
     
-    var itemList: [ItemModel] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     
-    lazy var viewModel: AllItemViewModel = {
-        let view = AllItemViewModel()
+    lazy var viewModel: MyPostViewModel = {
+        let view = MyPostViewModel()
         view.delegate = self
         
         return view
@@ -69,7 +64,7 @@ class MyAdvertismentViewController: LoaderBaseViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.refreshControl = refreshControl
-        tableView.register(MyAdViewCell.self, forCellReuseIdentifier: MyAdViewCell.cellIdentifier())
+        tableView.register(MyPostTableViewCell.self, forCellReuseIdentifier: MyPostTableViewCell.cellIdentifier())
     }
     
     func setupViews() -> Void {
@@ -98,33 +93,36 @@ class MyAdvertismentViewController: LoaderBaseViewController {
         }
     }
     
-     private func setupData(_ itemList: [ItemModel]) -> Void {
-         var list = [ItemModel]()
-         
-         for item in itemList {
-            if item.userModal._id == UserManager.getCurrentUser()!._id {
-                 list.append(item)
-             }
-         }
-         
-        self.itemList = list
-        emptyLabel.isHidden = !self.itemList.isEmpty
-     }
     
-    private func deleteItem(_ id: ItemModel) -> Void {
+    private func deleteItem(_ indexPath: IndexPath) -> Void {
+        self.showLoader()
+        ParseManager.shared.deleteRequest(url: AppConstants.API.createItem+"/\(self.viewModel.myPostList[indexPath.row]._id)", success: { (result: EmptyResponse) in
+            self.hideLoader()
+            self.viewModel.myPostList.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }) { (error) in
+            self.hideLoader()
+            if error == "The data couldn’t be read because it is missing." {
+                self.viewModel.myPostList.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            } else {
+                self.showErrorMessage(error)
+            }
+        }
+
     }
     
 //    MARK: - Objc functions
     @objc func updateList() -> Void {
-        viewModel.getItemList()
+        viewModel.getMyPosts()
     }
 
 }
 
-extension MyAdvertismentViewController: ProcessViewDelegate {
+extension MyPostsViewController: ProcessViewDelegate {
     func updateUI() {
-        self.setupData(viewModel.itemList)
-        self.refreshControl.endRefreshing()
+        emptyLabel.isHidden = !viewModel.myPostList.isEmpty
+        self.tableView.reloadData()
     }
     
     func endRefreshing() {
@@ -134,17 +132,36 @@ extension MyAdvertismentViewController: ProcessViewDelegate {
     
 }
 
-
-extension  MyAdvertismentViewController : UITableViewDelegate,UITableViewDataSource {
+extension  MyPostsViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemList.count
+        return viewModel.myPostList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MyAdViewCell.cellIdentifier(), for: indexPath) as! MyAdViewCell
-        cell.configuration(item: itemList[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyPostTableViewCell.cellIdentifier(), for: indexPath) as! MyPostTableViewCell
+        cell.configuration(item: viewModel.myPostList[indexPath.row])
+        cell.moreButton.tag = indexPath.row
         cell.selectionStyle = .none
+        
+        cell.popUpView.selectClosure = { [weak self] index in
+            guard let `self` = self else { return }
+            if index == 0 {
+                let vc = EditPostViewController(item: self.viewModel.myPostList[indexPath.row])
+                vc.successBlock = {
+                    self.updateList()
+                }
+                if #available(iOS 13.0, *) {
+                    vc.isModalInPresentation = true
+                } else {
+                    // Fallback on earlier versions
+                }
+
+                self.present(vc, animated: true, completion: nil)
+            } else {
+                self.deleteItem(indexPath)
+            }
+        }
 
         return cell
     }
@@ -154,23 +171,13 @@ extension  MyAdvertismentViewController : UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailMainPageController(id: itemList[indexPath.row]._id)
+        let vc = DetailMainPageController(id: viewModel.myPostList[indexPath.row]._id)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "", handler: {a,b,c in
-            ParseManager.shared.deleteRequest(url: AppConstants.API.createItem+"/\(self.itemList[indexPath.row]._id)", success: { (result: EmptyResponse) in
-                self.itemList.remove(at: indexPath.row)
-                self.tableView.reloadData()
-            }) { (error) in
-                if error == "The data couldn’t be read because it is missing." {
-                    self.itemList.remove(at: indexPath.row)
-                    self.tableView.reloadData()
-                } else {
-                    self.showErrorMessage(error)
-                }
-            }
+            self.deleteItem(indexPath)
         })
 
         

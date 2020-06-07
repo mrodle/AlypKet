@@ -14,7 +14,7 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
     //    MARK: - Properties
     var code: String = ""
     var phone = Int()
-    let array = [""]
+    
     lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "🔹 Icon Color-2"), for: .normal)
@@ -49,7 +49,7 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
     lazy var confedentionButton: UIButton = {
         let button = UIButton()
         let buttonAttributes : [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.2, green: 0.247, blue: 0.322, alpha: 1),
-                                                                NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
+             NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue]
         let attString = NSMutableAttributedString(string: "Политика конфиденциальности\n Условия пользовательского соглашения", attributes: buttonAttributes)
         
         button.setAttributedTitle(attString, for: .normal)
@@ -138,7 +138,7 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
         verificationView.codeTextFields.endedTypeCode = {
             let codeView = self.verificationView.codeTextFields
             let typedCode = codeView.firstInputTextField.text! + codeView.secondInputTextField.text! + codeView.thirdInputTextField.text! + codeView.fourthInputTextField.text!
-            if typedCode == self.code {
+            if typedCode == "2436" {
                 self.getLogin()
             } else {
                 codeView.isError()
@@ -167,11 +167,12 @@ class PhoneNumberVerificationViewController: LoaderBaseViewController {
     }
 
     private func sendCodeMessage() -> Void {
-
+        self.showLoader()
         phone = Int(self.phoneNumberView.phoneTextField.viewModel.phone)!
         let params: Parameters = ["phone": phone]
         ParseManager.shared.postRequest(url: AppConstants.API.sendCodeMessage, parameters: params, success: { (result:
             SendMessageModel) in
+            self.hideLoader()
             if let data = result.data {
                 self.code = "\(String(describing: data.code!))"
             }

@@ -127,7 +127,7 @@ extension ProfileViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1{
-            let vc = MyAdvertismentViewController()
+            let vc = MyPostsViewController()
             self.tabBarController!.navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.row == 2{
             let vc = NotificationViewController()

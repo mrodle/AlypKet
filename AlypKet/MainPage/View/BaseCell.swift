@@ -140,12 +140,12 @@ class BaseCell:UICollectionViewCell{
             if !photoList.isEmpty {
                 if let image = photoList.first {
                     if image == "no-photo.jpg" {
-                        imageView.image = #imageLiteral(resourceName: "no_image")
+                        imageView.image = item.price == 5000 ? #imageLiteral(resourceName: "IMAGE 2020-06-07 18:28:15") : #imageLiteral(resourceName: "no_image")
                     } else {
                         imageView.kf.setImage(with: image.serverUrlString.url)
                     }
                 } else {
-                    imageView.image = #imageLiteral(resourceName: "no_image")
+                    imageView.image = item.price == 5000 ? #imageLiteral(resourceName: "IMAGE 2020-06-07 18:28:15") : #imageLiteral(resourceName: "no_image")
                 }
             }
         }

@@ -14,7 +14,8 @@ class CreatePostViewController: LoaderBaseViewController {
     var selectedtextFieldTag = -1
     var parameters: Parameters = [:]
     var photoParameters: Parameters = [:]
-
+    var successBlock: (() -> ())?
+    
     var cityList: [City] = [] {
         didSet {
             fromLocationInputView.textField.pickerView.reloadAllComponents()
@@ -234,7 +235,9 @@ class CreatePostViewController: LoaderBaseViewController {
                 self.uploadPhotos(id: result.data._id)
             } else {
                 self.hideLoader()
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: {
+                    self.successBlock?()
+                })
             }
         }) { (error) in
             self.showErrorMessage(error)

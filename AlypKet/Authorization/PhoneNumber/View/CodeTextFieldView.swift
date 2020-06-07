@@ -25,7 +25,6 @@ class CodeTextFieldView: UIView {
     }()
     lazy var firstInputTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "X"
         text.layer.cornerRadius = 10
         text.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9882352941, alpha: 1)
         text.layer.borderWidth = 1.0
@@ -40,7 +39,6 @@ class CodeTextFieldView: UIView {
     }()
     lazy var secondInputTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "X"
         text.layer.cornerRadius = 10
         text.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9882352941, alpha: 1)
         text.isSecureTextEntry = false
@@ -55,7 +53,6 @@ class CodeTextFieldView: UIView {
     }()
     lazy var thirdInputTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "X"
         text.layer.cornerRadius = 10
         text.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9882352941, alpha: 1)
         text.layer.borderWidth = 1.0
@@ -70,7 +67,6 @@ class CodeTextFieldView: UIView {
     }()
     lazy var fourthInputTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "X"
         text.layer.cornerRadius = 10
         text.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9882352941, alpha: 1)
         text.layer.borderWidth = 1.0
@@ -221,7 +217,6 @@ class CodeTextFieldView: UIView {
         thirdInputTextField.backgroundColor = #colorLiteral(red: 255.0/255.0, green: 231.0/255.0, blue: 232.0/255.0, alpha: 1)
         fourthInputTextField.layer.borderColor = UIColor.red.cgColor
         fourthInputTextField.backgroundColor = #colorLiteral(red: 255.0/255.0, green: 231.0/255.0, blue: 232.0/255.0, alpha: 1)
-
     }
     
     func isEmptyTyping() -> Void {

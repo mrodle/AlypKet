@@ -99,6 +99,14 @@ class TabBarViewController: UITabBarController {
         } else {
             // Fallback on earlier versions
         }
+        vc.successBlock = {
+            let successVC = SuccessStatusViewController()
+            successVC.modalPresentationStyle = .overCurrentContext
+            successVC.modalTransitionStyle = .crossDissolve
+
+            self.present(successVC, animated: true, completion: nil)
+        }
+
         self.present(vc, animated: true, completion: nil)
     }
 }

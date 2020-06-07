@@ -37,5 +37,7 @@ class AppConstants {
         static let createItem = "bootcamps"
         static let getCityList = "cities"
         static let getToFavourite = "favorites"
+        static let getNotifications = "users/\(UserManager.getCurrentUser()!._id)/notifications"
+        static let getMyBootcamps = "bootcamps/by/\(UserManager.getCurrentUser()!._id)"
     }
 }

@@ -31,7 +31,6 @@ class ChatListTableViewCell: UITableViewCell {
     
     lazy var usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Нуржан Абдигалиев"
         label.font = .getProximaNovaRegularFont(on: 14)
         label.textColor = #colorLiteral(red: 0.247, green: 0.2, blue: 0.337, alpha: 1)
         
@@ -42,14 +41,12 @@ class ChatListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .getProximaNovaMediumFont(on: 16)
         label.textColor = #colorLiteral(red: 0.247, green: 0.2, blue: 0.337, alpha: 1)
-        label.text = "Вы бы приняли 40 тысяч  дол Вы бы приняли 40 тысяч  дол..."
 
         return label
     }()
     
     lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.text = " • 24 мин назад"
         label.font = .getProximaNovaRegularFont(on: 14)
         label.textColor = #colorLiteral(red: 0.247, green: 0.2, blue: 0.337, alpha: 1)
 
@@ -119,9 +116,17 @@ class ChatListTableViewCell: UITableViewCell {
             make.right.equalTo(timeLabel)
             make.top.equalTo(usernameLabel.snp.bottom).offset(4)
         }
-
     }
 
+    func configuration(message: MessageUser) -> Void {
+        let userImageList: [UIImage] = [#imageLiteral(resourceName: "photo_2020-06-03 00.55.38"), #imageLiteral(resourceName: "photo_2020-06-03 00.55.46"), #imageLiteral(resourceName: "photo_2020-06-03 00.55.55"), #imageLiteral(resourceName: "photo_2020-06-03 00.55.59")]
+        self.userImage.image = userImageList[message.id]
+        self.usernameLabel.text = message.fromUserName
+        self.messageLabel.text = message.message
+        self.timeLabel.text = message.date
+        self.countOfMessage = 0
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

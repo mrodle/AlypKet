@@ -8,13 +8,29 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController {
+class NotificationViewController: LoaderBaseViewController {
     
     
     lazy var navBarNotify = BackNavBarView(title: "Уведомления")
     
     let titleArray = ["Ведутся технические работы, обещаем что к концу дня все будет решено","На этой неделе вашу заявку смотрели 3 человека"]
     
+    lazy var viewModel: NotificationViewModel = {
+        let view = NotificationViewModel()
+        view.delegate = self
+        
+        return view
+    }()
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateList), for: .valueChanged)
+        refresh.tintColor = .mainColor
+        
+        return refresh
+    }()
+
+
     lazy var tableView = UITableView()
     
     
@@ -23,6 +39,9 @@ class NotificationViewController: UIViewController {
         setupViews()
         setupTableView()
         setupActions()
+        setupLoaderView()
+        self.showLoader()
+        updateList()
     }
     
     
@@ -31,6 +50,7 @@ class NotificationViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .white
+        tableView.refreshControl = refreshControl
         tableView.register(NotificationsViewCell.self, forCellReuseIdentifier: "notifyCell")
     }
     
@@ -53,23 +73,38 @@ class NotificationViewController: UIViewController {
         }
     }
     
+    @objc func updateList() -> Void {
+        viewModel.getNotificationList()
+    }
+    
 }
 
 extension  NotificationViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.notificationList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notifyCell", for: indexPath) as! NotificationsViewCell
         cell.selectionStyle = .none
-        cell.notifyContentLabel.text = titleArray[indexPath.row]
+        cell.configuration(viewModel.notificationList[indexPath.row])
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
+    }
+}
+
+extension NotificationViewController: ProcessViewDelegate {
+    func updateUI() {
+        self.tableView.reloadData()
+    }
+    
+    func endRefreshing() {
+        self.refreshControl.endRefreshing()
     }
     
     

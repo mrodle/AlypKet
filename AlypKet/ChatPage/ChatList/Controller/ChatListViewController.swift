@@ -11,14 +11,21 @@ import UIKit
 class ChatListViewController: UIViewController {
     
 //    MARK: - Properties
+    var messageList: [MessageUser] = [MessageUser(id: 0, fromUserName: "Assylkhan Turan", message: "сегодня же", date: "", thomb: "0"), MessageUser(id: 1, fromUserName: "Zhanibek Santai", message: "Вечером я сам вам напишу", date: "", thomb: "1"), MessageUser(id: 2, fromUserName: "Marzhan Nurdauletova", message: "Онда кешіріңіз, маған ертерек жеткізілуі қажет", date: "", thomb: "2"), MessageUser(id: 3, fromUserName: "Laura Askarbekova", message: "договороились", date: "", thomb: "3")]  {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    lazy var navBar: BackNavBarView = {
-        let view = BackNavBarView(title: "Сообщения")
-        view.backButton.isHidden = true
+    lazy var navBar: ProfileNavBar = {
+        let view = ProfileNavBar(title: "Сообщения", buttonImage: #imageLiteral(resourceName: "search-1"))
+        view.navBarButtonTarget = {
+
+        }
         
         return view
     }()
-    
+
     lazy var tableView = UITableView()
     let popUpLongPressView:PopUpLongPressView = {
        let popUpLongPressView = PopUpLongPressView()
@@ -47,7 +54,25 @@ class ChatListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        if MessageManager.getUserList().isEmpty {
+            do { try? MessageManager.setUserList(messageList) }
+        } else {
+            self.messageList = MessageManager.getUserList()
+            do { try? MessageManager.setUserList(messageList) }
+        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if MessageManager.getUserList().isEmpty {
+            do { try? MessageManager.setUserList(messageList) }
+        } else {
+            self.messageList = MessageManager.getUserList()
+            do { try? MessageManager.setUserList(messageList) }
+        }
+
+    }
+
     
     private func setupView() -> Void {
         self.navigationController?.navigationBar.isHidden = true
@@ -76,28 +101,28 @@ class ChatListViewController: UIViewController {
 
 extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return messageList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.cellIdentifier(), for: indexPath) as! ChatListTableViewCell
-        cell.countOfMessage = indexPath.row
+        cell.configuration(message: messageList[indexPath.row])
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchHeaderView.cellIdentifier()) as! SearchHeaderView
-        
-        return header
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchHeaderView.cellIdentifier()) as! SearchHeaderView
+//        
+//        return header
+//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return 60
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tabBarController!.navigationController?.pushViewController(ChatController(), animated: true)
+        self.tabBarController!.navigationController?.pushViewController(ChatController(user: messageList[indexPath.row]), animated: true)
     }
 }

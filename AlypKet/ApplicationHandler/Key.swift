@@ -10,4 +10,6 @@ import Foundation
 struct Key {
     static let currentUser = "currentUser"
     static let currentToken = "currentToken"
+    static let messageUserList = "messageUserList"
+    static let messageList = "messageList"
 }

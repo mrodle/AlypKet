@@ -92,6 +92,7 @@ class MainPageViewController: LoaderBaseViewController {
     }
 
     @objc func handleSearch(){
+        self.tabBarController?.navigationController?.pushViewController(NotificationViewController(), animated: true)
         print("print")
     }
     

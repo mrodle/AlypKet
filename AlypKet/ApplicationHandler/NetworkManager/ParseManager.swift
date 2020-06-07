@@ -62,7 +62,7 @@ class ParseManager {
         }
     }
 
-    func getRequest<T: Decodable>(url: String, parameters: Parameters? = nil, token: String? = nil,
+    func getRequest<T: Decodable>(url: String, parameters: Parameters? = nil, token: String? = UserManager.getCurrentToken(),
                                   success: @escaping (T) -> (), error: @escaping (String) -> ()) {
         let endpoint = Endpoints.get(url: url, parameters: parameters, token: token)
         

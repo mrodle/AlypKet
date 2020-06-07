@@ -15,6 +15,4 @@ class MessageData: Codable {
         self.message = message
         self.destination = destination
     }
-    
 }
-

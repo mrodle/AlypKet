@@ -84,4 +84,9 @@ class NotificationsViewCell: UITableViewCell {
         
     }
     
+    func configuration(_ notification: NotificationModel) -> Void  {
+        self.notifyContentLabel.text = notification.title
+        self.notifyDateLabel.text = "\(notification.data) (\(notification.hour))"
+    }
+    
 }
